@@ -30,21 +30,8 @@
             margin: 0;
             padding: 0;
         }
-
-        html {
-            scroll-behavior: smooth;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            font-weight: 400;
-            color: var(--ink-900);
-            background: var(--paper);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow-x: hidden; width: 100%; }
+        body { font-family: 'Inter', sans-serif; font-weight: 400; color: var(--ink-900); background: var(--paper); line-height: 1.6; overflow-x: hidden; width: 100%; max-width: 100%; position: relative; }
 
         img {
             max-width: 100%;
@@ -150,11 +137,7 @@
         }
 
         /* ============ TOP BAR ============ */
-        .topbar {
-            background: var(--navy-900);
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 0.8125rem;
-        }
+        .topbar { background: var(--navy-900); color: rgba(255,255,255,0.85); font-size: 0.8125rem; overflow-x: hidden; }
 
         .topbar-inner {
             display: flex;
@@ -516,14 +499,14 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.45;
+            opacity: 1;
         }
 
         .hero-bg::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(105deg, var(--navy-900) 0%, var(--navy-900) 30%, rgba(6, 18, 38, 0.85) 55%, rgba(6, 18, 38, 0.5) 100%);
+            background: linear-gradient(105deg, rgba(235, 245, 255, 0.9) 0%, rgba(235, 245, 255, 0.7) 35%, rgba(235, 245, 255, 0.3) 100%);
         }
 
         .hero-content {
@@ -531,6 +514,16 @@
             z-index: 2;
             padding: 5rem 0;
             max-width: 780px;
+        }
+
+        .hero-content h1, 
+        .hero-content p, 
+        .hero-content .eyebrow {
+            color: var(--navy-900);
+        }
+
+        .hero-content .eyebrow::before {
+            background: var(--navy-700);
         }
 
         .hero .eyebrow {
@@ -598,9 +591,7 @@
         }
 
         /* ============ SECTIONS ============ */
-        section {
-            padding: 6rem 0;
-        }
+        section { padding: 6rem 0; overflow-x: hidden; }
 
         .section-head {
             margin-bottom: 4rem;
@@ -1753,10 +1744,8 @@
                 grid-template-columns: 1fr;
             }
 
-            .hero-meta {
-                grid-template-columns: 1fr 1fr;
-                gap: 1.5rem 2rem;
-            }
+            .hero-meta { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem 2rem; margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.15); }
+            @media (min-width: 700px) { .hero-meta { grid-template-columns: repeat(4, auto); gap: 2.5rem; } }
 
             .footer-top {
                 grid-template-columns: 1fr;
