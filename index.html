@@ -506,8 +506,8 @@
             content: '';
             position: absolute;
             inset: 0;
-            /* Deep navy gradient to make text highly visible while blending */
-            background: linear-gradient(105deg, rgba(6, 18, 38, 0.92) 0%, rgba(6, 18, 38, 0.85) 35%, rgba(6, 18, 38, 0.65) 100%);
+            /* Light blue gradient so the video shows but dark text is readable */
+            background: linear-gradient(105deg, rgba(188, 204, 230, 0.90) 0%, rgba(188, 204, 230, 0.75) 35%, rgba(188, 204, 230, 0.45) 100%);
         }
 
         .hero-content {
@@ -517,11 +517,11 @@
             max-width: 780px;
         }
 
-        .hero .eyebrow { color: rgba(255, 255, 255, 0.85); }
-        .hero .eyebrow::before { background: rgba(255, 255, 255, 0.85); }
-        .hero h1 { color: #fff; margin: 1.5rem 0 1.75rem; font-weight: 500; }
-        .hero h1 em { font-style: italic; font-weight: 400; color: var(--navy-200); }
-        .hero p { color: rgba(255, 255, 255, 0.85); font-size: 1.0625rem; max-width: 560px; margin-bottom: 2rem; }
+        .hero .eyebrow { color: var(--navy-500); }
+        .hero .eyebrow::before { background: var(--navy-500); }
+        .hero h1 { color: var(--navy-900); margin: 1.5rem 0 1.75rem; font-weight: 500; }
+        .hero h1 em { font-style: italic; font-weight: 400; color: var(--navy-500); }
+        .hero p { color: var(--ink-700); font-size: 1.0625rem; max-width: 560px; margin-bottom: 2rem; }
 
         .hero-cta {
             display: flex;
@@ -535,7 +535,7 @@
             gap: 2.5rem;
             margin-top: 3.5rem;
             padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-top: 1px solid rgba(11, 37, 69, 0.15);
         }
 
         .hero-meta-item {
@@ -547,7 +547,7 @@
         .hero-meta-item .num {
             font-family: 'Cormorant Garamond', serif;
             font-size: 2rem;
-            color: #fff;
+            color: var(--navy-700);
             font-weight: 500;
             line-height: 1;
         }
@@ -556,7 +556,7 @@
             font-size: 0.6875rem;
             letter-spacing: 0.18em;
             text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.55);
+            color: var(--ink-500);
             margin-top: 0.5rem;
         }
 
@@ -2140,7 +2140,7 @@
                         </svg>
                         Shop on WhatsApp
                     </a>
-                    <a href="#products" class="btn btn-outline-light">
+                    <a href="#products" class="btn btn-outline">
                         Browse Products
                         <svg class="ico">
                             <use href="#i-arrow" />
@@ -2883,6 +2883,9 @@
                 { name: 'Solar Inverter (3KVA)', price: '₦550,000' },
                 { name: 'Deep Freezer', price: '₦320,000' },
                 { name: 'Microwave Oven', price: '₦120,000' }
+            ],
+            'LG' : [
+              { name: 'LG Freezer', price: '₦800,000', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRG-FneUaXshNNtAu1d5F6MlQHCt9DjVgDWMsfFfWemRA&s=10.jpg' }
             ],
             'default': [
                 { name: 'Product Model A', price: 'Price on Enquiry' },
