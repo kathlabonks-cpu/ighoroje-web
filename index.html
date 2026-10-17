@@ -1650,6 +1650,24 @@
             overflow: hidden;
             background: var(--paper-soft);
             transition: transform 300ms var(--ease), box-shadow 300ms var(--ease);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+        .brand-product-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--line);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--whatsapp-dk);
+        }
+        .brand-product-btn .ico { width: 14px; height: 14px; }
         }
         .brand-product-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
         .brand-product-card img { width: 100%; aspect-ratio: 3/2; object-fit: cover; }
@@ -2891,14 +2909,22 @@
                     // If you added an 'img', use it. If not, use a placeholder.
                     const imgUrl = p.img ? p.img : `https://picsum.photos/seed/${brandName}-${p.name}/300/200`;
 
+                    // Create a custom WhatsApp message for this specific product
+                    const waText = `Hello IGHOROJE INTERNATIONAL ENTERPRISE, I'm interested in the ${brandName} ${p.name} (${p.price}). Is it available?`;
+                    const waLink = `https://wa.me/2348037932842?text=${encodeURIComponent(waText)}`;
+
                     grid.innerHTML += `
-                        <div class="brand-product-card">
+                        <a href="${waLink}" target="_blank" rel="noopener" class="brand-product-card">
                             <img src="${imgUrl}" alt="${p.name}">
                             <div class="brand-product-body">
                                 <h4>${p.name}</h4>
                                 <span class="brand-product-price">${p.price}</span>
+                                <span class="brand-product-btn">
+                                    <svg class="ico"><use href="#i-whatsapp" /></svg>
+                                    Enquire on WhatsApp
+                                </span>
                             </div>
-                        </div>
+                        </a>
                     `;
                 });
 
