@@ -2473,8 +2473,11 @@
                         class="b-tag">Appliances & TVs</span></div>
                 <div class="brand-tile"><span class="b-mark">M</span><span class="b-name">MeWe</span><span
                         class="b-tag">Solar</span></div>
-                <div class="brand-tile"><span class="b-mark">A</span><span class="b-name">Aeon</span><span
-                        class="b-tag">Power</span></div>
+                <div class="brand-tile">
+                    <span class="b-mark">N</span>
+                    <span class="b-name">Nexus</span>
+                    <span class="b-tag">Home Appliances</span>
+                </div>
                 <div class="brand-tile"><span class="b-mark">B</span><span class="b-name">Brhum</span><span
                         class="b-tag">Cooling</span></div>
                 <div class="brand-tile"><span class="b-mark">T</span><span class="b-name">TCL</span><span
@@ -2873,6 +2876,18 @@
         onScroll();
         // ===== BRAND CATALOG MODAL =====
         const brandCatalogs = {
+            'Nexus': [
+                { name: 'NX-MSHFB-12CR410 Inverter AC', price: '₦400,000', img: '400K.jpg' },
+                { name: 'NX-WM-100AK Power Wash Washer', price: '₦410,000', img: '410K.jpg' },
+                { name: 'Nexus Standing Air Conditioner', price: '₦890,000', img: '890K.jpg' },
+                { name: 'Nexus Double Door Commercial Chiller', price: '₦1,050,000', img: 'chiller 1,050,000.jpg' },
+                { name: 'NX-400HEI Chest Freezer', price: '₦300,000', img: 'NX-400HEI 300k.jpg' },
+                { name: 'NX-400HEI Inverter Chest Freezer', price: '₦460,000', img: 'NX-400HEI 460K.jpg' },
+                { name: 'NX-490H Chest Freezer', price: '₦495,000', img: 'NX-490H 495k.jpg' },
+                { name: 'NX-6003 (4+0) Gas Cooker', price: '₦235,000', img: 'NX-6003(4+0) 235k.jpg' },
+                { name: 'NX-9001 Gas Cooker', price: '₦480,000', img: 'NX-9001 480k.jpg' },
+                { name: 'Nexus Compact Refrigerator', price: '₦120,000', img: 'This Is Refrigerator for Nexus 120k.jpg' }
+            ],
             'Thermocool': [
                 { name: 'HRF-355BLUX Refrigerator', price: '₦500,000', img: 'HRF-355Blux 500k.jpg' },
                 { name: 'HRF-355BLUX Luxury Refrigerator', price: '₦670,000', img: 'HRF-355Blux 670k.jpg' },
@@ -2881,6 +2896,10 @@
                 { name: 'Thermocool Washing Machine', price: '₦530,000', img: 'Thermcool washing machine 530k.jpg' }
             ],
             'Scanfrost': [
+                { name: 'Scanfrost Gas Cooker', price: '₦330,000', img: '330 scan frost gas cooker.jpg' },
+                { name: 'Scanfrost Premium Gas Cooker', price: '₦535,000', img: '535k.jpg' },
+                { name: 'Scanfrost Gas Cooker Oven', price: '₦620,000', img: '620k scan frost gas cooker.jpg' },
+                { name: 'Scanfrost Appliance', price: '₦650,000', img: '650K scan frost.jpg' },
                 { name: 'SFL200ECO Chest Freezer', price: '₦420,000', img: 'SFL200ECO 420k.jpg' },
                 { name: 'SFL250ECO Chest Freezer', price: '₦425,000', img: 'SFL250ECO 425k.jpg' },
                 { name: 'SFL250INV Inverter Freezer', price: '₦480,000', img: 'SFL250INV 480k.jpg' },
@@ -2891,7 +2910,7 @@
                 { name: 'FL-31FC Beverage Cooler', price: '₦469,000', img: 'FL-31FC Beverage cooler 469k.jpg' },
                 { name: 'Scanfrost Air Conditioner', price: '₦400,000', img: 'Scan frost AC 400k.jpg' },
                 { name: 'Scanfrost Washing Machine 7.65kg', price: '₦765,000', img: 'scan frost washing machine 765K.jpg' },
-                { name: 'SFWM1100INVME Inverter Washing Machine', price: '₦535,000', img: 'SFWM1100INVME 535k.jpg' },
+                { name: 'SFWM1100INVME Washing Machine', price: '₦535,000', img: 'SFWM1100INVME 535k.jpg' },
                 { name: 'SFWMTLBQ80 Top Load Washer', price: '₦355,000', img: 'SFWMTLBQ80 355k.jpg' },
                 { name: 'SFWMTT5.5A Twin Tub Washer', price: '₦195,000', img: 'SFWMTT5.5A 195k.jpg' },
                 { name: 'SFSANTTD6 Appliance', price: '₦228,000', img: 'SFSANTTD6 228k.jpg' },
@@ -2902,7 +2921,7 @@
                 { name: '1.5HP Air Conditioner', price: '₦495,000', img: '1.5HP Air-Condition LG 495k.jpg' },
                 { name: '43UA73006LA 43" Smart TV', price: '₦390,000', img: '43UA73006LA 390k.jpg' },
                 { name: '86UA85006LA 86" UHD TV', price: '₦1,530,000', img: '86UA85006LA 1,530,000.jpg' },
-                { name: 'F0Z8DRP24 Front Load Washer/Dryer', price: '₦1,200,000', img: 'F0Z8DRP24 1,200,000.jpg' },
+                { name: 'F0Z8DRP24 Washer/Dryer', price: '₦1,200,000', img: 'F0Z8DRP24 1,200,000.jpg' },
                 { name: 'FC91DD Front Load Washer', price: '₦900,000', img: 'FC91DD 900k.jpg' },
                 { name: 'GCFB205BQCF Refrigerator', price: '₦265,000', img: 'GCFB205BQCF 265k.jpg' },
                 { name: 'GCFB255BQCF Refrigerator', price: '₦309,000', img: 'GCFB255BQCF 309k.jpg' },
@@ -2938,13 +2957,24 @@
                 { name: 'Bruhm Chest Freezer', price: '₦300,000', img: 'Bruhm freezer 300k.jpg' }
             ],
             'MeWe': [
+                { name: 'MeWe 4K Smart TV', price: '₦1,450,000', img: 'Mewe Tv 1,450,000.jpg' },
+                { name: 'MeWe Air Conditioner', price: '₦410,000', img: 'Mewe ac 410k.jpg' },
+                { name: 'MeWe Smart TV', price: '₦246,000', img: 'Mewe smart TV 246k.jpg' },
                 { name: 'Solar Inverter System', price: 'Price on Enquiry', img: 'solar.jpg' }
+            ],
+            'TCL': [
+                { name: 'TCL Chest Freezer', price: '₦650,000', img: '650K.jpg' },
+                { name: 'TCL Standing Air Conditioner', price: '₦950,000', img: '950k.jpg' },
+                { name: 'TCL Google TV 75"', price: '₦1,035,000', img: 'TCL Google TV 1,035,000.jpg' },
+                { name: 'TCL Google TV 55"', price: '₦530,000', img: 'TCL Google TV 530k.jpg' },
+                { name: 'TCL Refrigerator', price: '₦535,000', img: 'TCL refrigerator 535k.jpg' }
             ],
             'default': [
                 { name: 'Product Model A', price: 'Price on Enquiry' },
                 { name: 'Product Model B', price: 'Price on Enquiry' }
             ]
         };
+
 
 
         const brandModal = document.getElementById('brandModal');
