@@ -1789,21 +1789,74 @@
             width: 14px;
             height: 14px;
         }
-        }
 
         .brand-product-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
         }
 
+        .brand-product-img-wrap {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: zoom-in;
+        }
+
         .brand-product-card img {
             width: 100%;
-            aspect-ratio: 3/2;
-            object-fit: cover;
+            height: 100%;
+            object-fit: contain;
+            padding: 0.4rem;
+            transition: transform 300ms var(--ease);
+        }
+
+        .brand-product-img-wrap:hover img {
+            transform: scale(1.05);
+        }
+
+        .img-expand-hint {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: rgba(11, 37, 69, 0.75);
+            backdrop-filter: blur(6px);
+            color: #ffffff;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 200ms var(--ease), transform 200ms var(--ease);
+            pointer-events: none;
+        }
+
+        .brand-product-img-wrap:hover .img-expand-hint,
+        .about-image:hover .img-expand-hint {
+            opacity: 1;
+            transform: scale(1.08);
+        }
+
+        .img-expand-hint .ico {
+            width: 14px;
+            height: 14px;
+        }
+
+        .about-image {
+            cursor: zoom-in;
         }
 
         .brand-product-body {
             padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
         }
 
         .brand-product-body h4 {
@@ -1818,6 +1871,172 @@
             font-size: 0.875rem;
             color: var(--navy-500);
             font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        .brand-product-actions {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--line);
+        }
+
+        .brand-chat-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.4rem;
+        }
+
+        .brand-chat-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.35rem;
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 0.5rem 0.3rem;
+            border-radius: 6px;
+            transition: all 200ms;
+            text-decoration: none;
+        }
+
+        .brand-chat-btn .ico {
+            width: 13px;
+            height: 13px;
+        }
+
+        .brand-chat-btn.wa {
+            background: #25D366;
+            color: #fff;
+            padding: 0.6rem 0.8rem;
+            font-size: 0.8rem;
+            border-radius: 8px;
+        }
+
+        .brand-chat-btn.wa:hover {
+            background: #1EBE5D;
+            transform: translateY(-1px);
+        }
+
+        .brand-chat-btn.ig {
+            color: #E1306C;
+            background: rgba(225, 48, 108, 0.1);
+        }
+
+        .brand-chat-btn.ig:hover {
+            background: #E1306C;
+            color: #fff;
+        }
+
+        .brand-chat-btn.tt {
+            color: #000;
+            background: rgba(0, 0, 0, 0.08);
+        }
+
+        .brand-chat-btn.tt:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        .brand-modal-footer-channels {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        /* ============ IMAGE LIGHTBOX MODAL ============ */
+        .image-lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 500;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            background: rgba(6, 18, 38, 0.92);
+            backdrop-filter: blur(12px);
+            opacity: 0;
+            transition: opacity 250ms var(--ease);
+        }
+
+        .image-lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.5rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            font-size: 2rem;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            transition: all 200ms var(--ease);
+            z-index: 510;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg) scale(1.05);
+        }
+
+        .lightbox-container {
+            max-width: 90vw;
+            max-height: 88vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: zoomLightbox 300ms var(--ease);
+        }
+
+        @keyframes zoomLightbox {
+            from {
+                opacity: 0;
+                transform: scale(0.92);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .lightbox-container img {
+            max-width: 100%;
+            max-height: 78vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+            background: #ffffff;
+        }
+
+        .lightbox-caption {
+            margin-top: 1rem;
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: center;
+            max-width: 600px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 0.5rem 1.25rem;
+            border-radius: 20px;
+            letter-spacing: 0.01em;
         }
 
         .brand-modal-footer {
@@ -2087,6 +2306,13 @@
         <symbol id="i-tiktok" viewBox="0 0 24 24" fill="currentColor">
             <path
                 d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.1 1.06-1.34 1.77-.21.61-.15 1.28-.14 1.91.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.05-.01-8.09.02-12.13z" />
+        </symbol>
+        <symbol id="i-expand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 3 21 3 21 9" />
+            <polyline points="9 21 3 21 3 15" />
+            <line x1="21" y1="3" x2="14" y2="10" />
+            <line x1="3" y1="21" x2="10" y2="14" />
         </symbol>
         <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">
@@ -3038,13 +3264,36 @@
                 <!-- Products injected by JS -->
             </div>
             <div class="brand-modal-footer">
-                <a href="#" id="brandModalWaLink" class="btn btn-whatsapp" target="_blank" rel="noopener">
-                    <svg class="ico">
-                        <use href="#i-whatsapp" />
-                    </svg>
-                    Enquire / Buy on WhatsApp
-                </a>
+                <div class="brand-modal-footer-channels">
+                    <a href="#" id="brandModalWaLink" class="btn btn-whatsapp" target="_blank" rel="noopener">
+                        <svg class="ico">
+                            <use href="#i-whatsapp" />
+                        </svg>
+                        Enquire on WhatsApp
+                    </a>
+                    <a href="https://instagram.com/ighorojeintent" target="_blank" rel="noopener" class="btn btn-outline" style="border-color:#E1306C; color:#E1306C;">
+                        <svg class="ico">
+                            <use href="#i-instagram" />
+                        </svg>
+                        Instagram
+                    </a>
+                    <a href="https://tiktok.com/@ighoroje.int.ent" target="_blank" rel="noopener" class="btn btn-outline" style="border-color:#111; color:#111;">
+                        <svg class="ico">
+                            <use href="#i-tiktok" />
+                        </svg>
+                        TikTok
+                    </a>
+                </div>
             </div>
+        </div>
+    </div>
+
+    <!-- ===== IMAGE LIGHTBOX MODAL ===== -->
+    <div class="image-lightbox" id="imageLightbox" aria-hidden="true" role="dialog">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close image">×</button>
+        <div class="lightbox-container" id="lightboxContainer">
+            <img src="" alt="" id="lightboxImg">
+            <div class="lightbox-caption" id="lightboxCaption"></div>
         </div>
     </div>
     <!-- ===== FLOATING WHATSAPP ===== -->
@@ -3215,24 +3464,121 @@
 
             filtered.forEach(p => {
                 const imgUrl = p.img ? p.img : `https://picsum.photos/seed/${brandName}-${p.name}/300/200`;
+                const safeName = (p.name || '').replace(/"/g, '&quot;');
                 const waText = `Hello IGHOROJE INTERNATIONAL ENTERPRISE, I'm interested in the ${brandName} ${p.name} (${p.price}). Is it available?`;
                 const waLink = `https://wa.me/2348037932842?text=${encodeURIComponent(waText)}`;
+                const igLink = `https://instagram.com/ighorojeintent`;
+                const ttLink = `https://tiktok.com/@ighoroje.int.ent`;
 
                 grid.innerHTML += `
-                    <a href="${waLink}" target="_blank" rel="noopener" class="brand-product-card">
-                        <img src="${imgUrl}" alt="${p.name}">
+                    <div class="brand-product-card">
+                        <div class="brand-product-img-wrap" data-lightbox="${imgUrl}" data-caption="${brandName} — ${safeName} (${p.price})" title="Click to expand picture">
+                            <img src="${imgUrl}" alt="${safeName}">
+                            <div class="img-expand-hint" aria-hidden="true">
+                                <svg class="ico"><use href="#i-expand" /></svg>
+                            </div>
+                        </div>
                         <div class="brand-product-body">
                             <h4>${p.name}</h4>
                             <span class="brand-product-price">${p.price}</span>
-                            <span class="brand-product-btn">
-                                <svg class="ico"><use href="#i-whatsapp" /></svg>
-                                Enquire on WhatsApp
-                            </span>
+                            <div class="brand-product-actions">
+                                <a href="${waLink}" target="_blank" rel="noopener" class="brand-chat-btn wa">
+                                    <svg class="ico"><use href="#i-whatsapp" /></svg>
+                                    WhatsApp
+                                </a>
+                                <div class="brand-chat-links">
+                                    <a href="${igLink}" target="_blank" rel="noopener" class="brand-chat-btn ig">
+                                        <svg class="ico"><use href="#i-instagram" /></svg>
+                                        Instagram
+                                    </a>
+                                    <a href="${ttLink}" target="_blank" rel="noopener" class="brand-chat-btn tt">
+                                        <svg class="ico"><use href="#i-tiktok" /></svg>
+                                        TikTok
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                    </a>
+                    </div>
                 `;
             });
         }
+
+        // ============ LIGHTBOX FUNCTIONALITY ============
+        const imageLightbox = document.getElementById('imageLightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxCaption = document.getElementById('lightboxCaption');
+        const lightboxClose = document.getElementById('lightboxClose');
+
+        function openLightbox(src, captionText = '') {
+            if (!src) return;
+            lightboxImg.src = src;
+            lightboxImg.alt = captionText;
+            lightboxCaption.textContent = captionText;
+            lightboxCaption.style.display = captionText ? 'block' : 'none';
+            imageLightbox.classList.add('active');
+            imageLightbox.setAttribute('aria-hidden', 'false');
+        }
+
+        function closeLightbox() {
+            imageLightbox.classList.remove('active');
+            imageLightbox.setAttribute('aria-hidden', 'true');
+            lightboxImg.src = '';
+            lightboxCaption.textContent = '';
+        }
+
+        lightboxClose.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeLightbox();
+        });
+
+        imageLightbox.addEventListener('click', (e) => {
+            if (e.target === imageLightbox || e.target.id === 'lightboxContainer') {
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (imageLightbox.classList.contains('active')) {
+                    closeLightbox();
+                } else if (brandModal.classList.contains('active')) {
+                    closeBrandModal();
+                }
+            }
+        });
+
+        // Delegate image clicks for dynamically created brand product cards as well as category cards & about image
+        document.addEventListener('click', (e) => {
+            // Check brand product image wrap
+            const brandImgWrap = e.target.closest('.brand-product-img-wrap');
+            if (brandImgWrap) {
+                const src = brandImgWrap.getAttribute('data-lightbox');
+                const caption = brandImgWrap.getAttribute('data-caption') || '';
+                openLightbox(src, caption);
+                return;
+            }
+
+            // Check catalog category cards
+            const categoryCardImg = e.target.closest('.product-card .img-wrap');
+            if (categoryCardImg) {
+                const img = categoryCardImg.querySelector('img');
+                const card = categoryCardImg.closest('.product-card');
+                const title = card ? (card.querySelector('h3')?.textContent || '') : '';
+                if (img) {
+                    openLightbox(img.src, title ? `Category: ${title}` : (img.alt || ''));
+                }
+                return;
+            }
+
+            // Check about image
+            const aboutImgWrap = e.target.closest('.about-image');
+            if (aboutImgWrap && !e.target.closest('.badge')) {
+                const img = aboutImgWrap.querySelector('img');
+                if (img) {
+                    openLightbox(img.src, 'IGHOROJE INTERNATIONAL ENTERPRISE — 80 Isoko Road, Ughelli');
+                }
+            }
+        });
 
         document.querySelectorAll('.brand-tile').forEach(tile => {
             tile.addEventListener('click', () => {
