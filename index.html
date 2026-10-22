@@ -30,8 +30,26 @@
             margin: 0;
             padding: 0;
         }
-        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow-x: hidden; width: 100%; }
-        body { font-family: 'Inter', sans-serif; font-weight: 400; color: var(--ink-900); background: var(--paper); line-height: 1.6; overflow-x: hidden; width: 100%; max-width: 100%; position: relative; }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            color: var(--ink-900);
+            background: var(--paper);
+            line-height: 1.6;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100%;
+            position: relative;
+        }
 
         img {
             max-width: 100%;
@@ -137,7 +155,12 @@
         }
 
         /* ============ TOP BAR ============ */
-        .topbar { background: var(--navy-900); color: rgba(255,255,255,0.85); font-size: 0.8125rem; overflow-x: hidden; }
+        .topbar {
+            background: var(--navy-900);
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.8125rem;
+            overflow-x: hidden;
+        }
 
         .topbar-inner {
             display: flex;
@@ -517,11 +540,32 @@
             max-width: 780px;
         }
 
-        .hero .eyebrow { color: var(--navy-500); }
-        .hero .eyebrow::before { background: var(--navy-500); }
-        .hero h1 { color: var(--navy-900); margin: 1.5rem 0 1.75rem; font-weight: 500; }
-        .hero h1 em { font-style: italic; font-weight: 400; color: var(--navy-500); }
-        .hero p { color: var(--ink-700); font-size: 1.0625rem; max-width: 560px; margin-bottom: 2rem; }
+        .hero .eyebrow {
+            color: var(--navy-500);
+        }
+
+        .hero .eyebrow::before {
+            background: var(--navy-500);
+        }
+
+        .hero h1 {
+            color: var(--navy-900);
+            margin: 1.5rem 0 1.75rem;
+            font-weight: 500;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--navy-500);
+        }
+
+        .hero p {
+            color: var(--ink-700);
+            font-size: 1.0625rem;
+            max-width: 560px;
+            margin-bottom: 2rem;
+        }
 
         .hero-cta {
             display: flex;
@@ -535,7 +579,8 @@
             gap: 2.5rem;
             margin-top: 3.5rem;
             padding-top: 2rem;
-            border-top: 1px solid rgba(11, 37, 69, 0.3); /* Darker line */
+            border-top: 1px solid rgba(11, 37, 69, 0.3);
+            /* Darker line */
         }
 
         .hero-meta-item {
@@ -547,8 +592,10 @@
         .hero-meta-item .num {
             font-family: 'Cormorant Garamond', serif;
             font-size: 2rem;
-            color: var(--navy-900); /* Darkest blue */
-            font-weight: 600;       /* Bolder */
+            color: var(--navy-900);
+            /* Darkest blue */
+            font-weight: 600;
+            /* Bolder */
             line-height: 1;
         }
 
@@ -556,13 +603,18 @@
             font-size: 0.6875rem;
             letter-spacing: 0.18em;
             text-transform: uppercase;
-            color: var(--ink-900); /* Near black for high contrast */
+            color: var(--ink-900);
+            /* Near black for high contrast */
             margin-top: 0.5rem;
-            font-weight: 500;      /* Bolder */
+            font-weight: 500;
+            /* Bolder */
         }
 
         /* ============ SECTIONS ============ */
-        section { padding: 6rem 0; overflow-x: hidden; }
+        section {
+            padding: 6rem 0;
+            overflow-x: hidden;
+        }
 
         .section-head {
             margin-bottom: 4rem;
@@ -1579,6 +1631,7 @@
             opacity: 1;
             transform: translateX(0);
         }
+
         /* ============ BRAND MODAL ============ */
         .brand-modal {
             position: fixed;
@@ -1589,13 +1642,18 @@
             justify-content: center;
             padding: 1.5rem;
         }
-        .brand-modal.active { display: flex; }
+
+        .brand-modal.active {
+            display: flex;
+        }
+
         .brand-modal-overlay {
             position: absolute;
             inset: 0;
             background: rgba(6, 18, 38, 0.8);
             backdrop-filter: blur(8px);
         }
+
         .brand-modal-content {
             position: relative;
             background: var(--paper);
@@ -1605,10 +1663,22 @@
             overflow-y: auto;
             border-radius: 16px;
             padding: 2.5rem;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             animation: modalIn 400ms var(--ease);
         }
-        @keyframes modalIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
         .brand-modal-close {
             position: absolute;
             top: 1rem;
@@ -1623,8 +1693,45 @@
             justify-content: center;
             transition: color 200ms;
         }
-        .brand-modal-close:hover { color: var(--navy-700); }
-        .brand-modal-header h2 { margin: 0.5rem 0 1.25rem; }
+
+        .brand-modal-close:hover {
+            color: var(--navy-700);
+        }
+
+        .brand-modal-header h2 {
+            margin: 0.5rem 0 1.25rem;
+        }
+
+        .brand-modal-categories {
+            display: flex;
+            gap: 8px;
+            margin: -1rem 0 2rem;
+            flex-wrap: wrap;
+            padding-bottom: 5px;
+        }
+
+        .cat-pill {
+            padding: 6px 16px;
+            border-radius: 30px;
+            border: 1px solid var(--navy-700);
+            background: transparent;
+            color: var(--navy-700);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .cat-pill.active {
+            background: var(--navy-700);
+            color: #ffffff;
+        }
+
+        .cat-pill:hover:not(.active) {
+            background: rgba(0, 34, 68, 0.05);
+        }
+
         .price-warning {
             background: var(--navy-50);
             border: 1px solid var(--navy-100);
@@ -1638,13 +1745,21 @@
             margin-bottom: 2rem;
             line-height: 1.5;
         }
-        .price-warning .ico { width: 24px; height: 24px; color: var(--navy-500); flex-shrink: 0; }
+
+        .price-warning .ico {
+            width: 24px;
+            height: 24px;
+            color: var(--navy-500);
+            flex-shrink: 0;
+        }
+
         .brand-modal-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 1.5rem;
             margin-bottom: 2rem;
         }
+
         .brand-product-card {
             border: 1px solid var(--line);
             border-radius: 12px;
@@ -1656,6 +1771,7 @@
             display: flex;
             flex-direction: column;
         }
+
         .brand-product-btn {
             display: inline-flex;
             align-items: center;
@@ -1668,21 +1784,67 @@
             font-weight: 600;
             color: var(--whatsapp-dk);
         }
-        .brand-product-btn .ico { width: 14px; height: 14px; }
+
+        .brand-product-btn .ico {
+            width: 14px;
+            height: 14px;
         }
-        .brand-product-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
-        .brand-product-card img { width: 100%; aspect-ratio: 3/2; object-fit: cover; }
-        .brand-product-body { padding: 1rem; }
-        .brand-product-body h4 { font-family: 'Inter', sans-serif; font-size: 0.95rem; font-weight: 600; color: var(--navy-700); margin-bottom: 0.5rem; }
-        .brand-product-price { font-size: 0.875rem; color: var(--navy-500); font-weight: 500; }
-        .brand-modal-footer { text-align: center; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+        }
+
+        .brand-product-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .brand-product-card img {
+            width: 100%;
+            aspect-ratio: 3/2;
+            object-fit: cover;
+        }
+
+        .brand-product-body {
+            padding: 1rem;
+        }
+
+        .brand-product-body h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--navy-700);
+            margin-bottom: 0.5rem;
+        }
+
+        .brand-product-price {
+            font-size: 0.875rem;
+            color: var(--navy-500);
+            font-weight: 500;
+        }
+
+        .brand-modal-footer {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--line);
+        }
 
         @media (max-width: 600px) {
-            .brand-modal-content { padding: 1.5rem; }
-            .brand-modal-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
-            .brand-product-body { padding: 0.75rem; }
-            .brand-product-body h4 { font-size: 0.85rem; }
+            .brand-modal-content {
+                padding: 1.5rem;
+            }
+
+            .brand-modal-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            .brand-product-body {
+                padding: 0.75rem;
+            }
+
+            .brand-product-body h4 {
+                font-size: 0.85rem;
+            }
         }
+
         /* ============ REVEAL ============ */
         .reveal {
             opacity: 0;
@@ -1819,8 +1981,21 @@
                 grid-template-columns: 1fr;
             }
 
-            .hero-meta { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem 2rem; margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid rgba(6, 18, 38, 0.1); }
-            @media (min-width: 700px) { .hero-meta { grid-template-columns: repeat(4, auto); gap: 2.5rem; } }
+            .hero-meta {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem 2rem;
+                margin-top: 3.5rem;
+                padding-top: 2rem;
+                border-top: 1px solid rgba(6, 18, 38, 0.1);
+            }
+
+            @media (min-width: 700px) {
+                .hero-meta {
+                    grid-template-columns: repeat(4, auto);
+                    gap: 2.5rem;
+                }
+            }
 
             .footer-top {
                 grid-template-columns: 1fr;
@@ -2203,17 +2378,23 @@
                         <div class="chat-links">
                             <a href="https://wa.me/2348037932842?text=Hello%20IGHOROJE%20INTERNATIONAL%20ENTERPRISE%2C%20I%27d%20like%20to%20enquire%20about%20your%20Air%20Conditioners.%20Please%20share%20available%20brands%20and%20pricing."
                                 target="_blank" rel="noopener" class="chat-link whatsapp">
-                                <svg class="ico"><use href="#i-whatsapp" /></svg>
+                                <svg class="ico">
+                                    <use href="#i-whatsapp" />
+                                </svg>
                                 WA
                             </a>
                             <a href="https://instagram.com/ighorojeintent" target="_blank" rel="noopener"
                                 class="chat-link instagram">
-                                <svg class="ico"><use href="#i-instagram" /></svg>
+                                <svg class="ico">
+                                    <use href="#i-instagram" />
+                                </svg>
                                 IG
                             </a>
                             <a href="https://tiktok.com/@ighoroje.int.ent" target="_blank" rel="noopener"
                                 class="chat-link tiktok">
-                                <svg class="ico"><use href="#i-tiktok" /></svg>
+                                <svg class="ico">
+                                    <use href="#i-tiktok" />
+                                </svg>
                                 TT
                             </a>
                         </div>
@@ -2235,17 +2416,23 @@
                         <div class="chat-links">
                             <a href="https://wa.me/2348037932842?text=Hello%20IGHOROJE%20INTERNATIONAL%20ENTERPRISE%2C%20I%27d%20like%20to%20enquire%20about%20your%20Solar%20Panels.%20Please%20share%20available%20options%20and%20pricing."
                                 target="_blank" rel="noopener" class="chat-link whatsapp">
-                                <svg class="ico"><use href="#i-whatsapp" /></svg>
+                                <svg class="ico">
+                                    <use href="#i-whatsapp" />
+                                </svg>
                                 WA
                             </a>
                             <a href="https://instagram.com/ighorojeintent" target="_blank" rel="noopener"
                                 class="chat-link instagram">
-                                <svg class="ico"><use href="#i-instagram" /></svg>
+                                <svg class="ico">
+                                    <use href="#i-instagram" />
+                                </svg>
                                 IG
                             </a>
                             <a href="https://tiktok.com/@ighoroje.int.ent" target="_blank" rel="noopener"
                                 class="chat-link tiktok">
-                                <svg class="ico"><use href="#i-tiktok" /></svg>
+                                <svg class="ico">
+                                    <use href="#i-tiktok" />
+                                </svg>
                                 TT
                             </a>
                         </div>
@@ -2267,17 +2454,23 @@
                         <div class="chat-links">
                             <a href="https://wa.me/2348037932842?text=Hello%20IGHOROJE%20INTERNATIONAL%20ENTERPRISE%2C%20I%27d%20like%20to%20enquire%20about%20your%20CCTV%20Cameras.%20Please%20share%20available%20options%20and%20pricing."
                                 target="_blank" rel="noopener" class="chat-link whatsapp">
-                                <svg class="ico"><use href="#i-whatsapp" /></svg>
+                                <svg class="ico">
+                                    <use href="#i-whatsapp" />
+                                </svg>
                                 WA
                             </a>
                             <a href="https://instagram.com/ighorojeintent" target="_blank" rel="noopener"
                                 class="chat-link instagram">
-                                <svg class="ico"><use href="#i-instagram" /></svg>
+                                <svg class="ico">
+                                    <use href="#i-instagram" />
+                                </svg>
                                 IG
                             </a>
                             <a href="https://tiktok.com/@ighoroje.int.ent" target="_blank" rel="noopener"
                                 class="chat-link tiktok">
-                                <svg class="ico"><use href="#i-tiktok" /></svg>
+                                <svg class="ico">
+                                    <use href="#i-tiktok" />
+                                </svg>
                                 TT
                             </a>
                         </div>
@@ -2299,17 +2492,23 @@
                         <div class="chat-links">
                             <a href="https://wa.me/2348037932842?text=Hello%20IGHOROJE%20INTERNATIONAL%20ENTERPRISE%2C%20I%27d%20like%20to%20enquire%20about%20your%20Refrigerators.%20Please%20share%20available%20brands%20and%20pricing."
                                 target="_blank" rel="noopener" class="chat-link whatsapp">
-                                <svg class="ico"><use href="#i-whatsapp" /></svg>
+                                <svg class="ico">
+                                    <use href="#i-whatsapp" />
+                                </svg>
                                 WA
                             </a>
                             <a href="https://instagram.com/ighorojeintent" target="_blank" rel="noopener"
                                 class="chat-link instagram">
-                                <svg class="ico"><use href="#i-instagram" /></svg>
+                                <svg class="ico">
+                                    <use href="#i-instagram" />
+                                </svg>
                                 IG
                             </a>
                             <a href="https://tiktok.com/@ighoroje.int.ent" target="_blank" rel="noopener"
                                 class="chat-link tiktok">
-                                <svg class="ico"><use href="#i-tiktok" /></svg>
+                                <svg class="ico">
+                                    <use href="#i-tiktok" />
+                                </svg>
                                 TT
                             </a>
                         </div>
@@ -2330,17 +2529,23 @@
                         <div class="chat-links">
                             <a href="https://wa.me/2348037932842?text=Hello%20IGHOROJE%20INTERNATIONAL%20ENTERPRISE%2C%20I%27d%20like%20to%20enquire%20about%20your%20Freezers.%20Please%20share%20available%20options%20and%20pricing."
                                 target="_blank" rel="noopener" class="chat-link whatsapp">
-                                <svg class="ico"><use href="#i-whatsapp" /></svg>
+                                <svg class="ico">
+                                    <use href="#i-whatsapp" />
+                                </svg>
                                 WA
                             </a>
                             <a href="https://instagram.com/ighorojeintent" target="_blank" rel="noopener"
                                 class="chat-link instagram">
-                                <svg class="ico"><use href="#i-instagram" /></svg>
+                                <svg class="ico">
+                                    <use href="#i-instagram" />
+                                </svg>
                                 IG
                             </a>
                             <a href="https://tiktok.com/@ighoroje.int.ent" target="_blank" rel="noopener"
                                 class="chat-link tiktok">
-                                <svg class="ico"><use href="#i-tiktok" /></svg>
+                                <svg class="ico">
+                                    <use href="#i-tiktok" />
+                                </svg>
                                 TT
                             </a>
                         </div>
@@ -2362,17 +2567,23 @@
                         <div class="chat-links">
                             <a href="https://wa.me/2348037932842?text=Hello%20IGHOROJE%20INTERNATIONAL%20ENTERPRISE%2C%20I%27d%20like%20to%20enquire%20about%20your%20Generators.%20Please%20share%20available%20options%20and%20pricing."
                                 target="_blank" rel="noopener" class="chat-link whatsapp">
-                                <svg class="ico"><use href="#i-whatsapp" /></svg>
+                                <svg class="ico">
+                                    <use href="#i-whatsapp" />
+                                </svg>
                                 WA
                             </a>
                             <a href="https://instagram.com/ighorojeintent" target="_blank" rel="noopener"
                                 class="chat-link instagram">
-                                <svg class="ico"><use href="#i-instagram" /></svg>
+                                <svg class="ico">
+                                    <use href="#i-instagram" />
+                                </svg>
                                 IG
                             </a>
                             <a href="https://tiktok.com/@ighoroje.int.ent" target="_blank" rel="noopener"
                                 class="chat-link tiktok">
-                                <svg class="ico"><use href="#i-tiktok" /></svg>
+                                <svg class="ico">
+                                    <use href="#i-tiktok" />
+                                </svg>
                                 TT
                             </a>
                         </div>
@@ -2394,17 +2605,23 @@
                         <div class="chat-links">
                             <a href="https://wa.me/2348037932842?text=Hello%20IGHOROJE%20INTERNATIONAL%20ENTERPRISE%2C%20I%27d%20like%20to%20enquire%20about%20your%20Televisions.%20Please%20share%20available%20brands%20and%20pricing."
                                 target="_blank" rel="noopener" class="chat-link whatsapp">
-                                <svg class="ico"><use href="#i-whatsapp" /></svg>
+                                <svg class="ico">
+                                    <use href="#i-whatsapp" />
+                                </svg>
                                 WA
                             </a>
                             <a href="https://instagram.com/ighorojeintent" target="_blank" rel="noopener"
                                 class="chat-link instagram">
-                                <svg class="ico"><use href="#i-instagram" /></svg>
+                                <svg class="ico">
+                                    <use href="#i-instagram" />
+                                </svg>
                                 IG
                             </a>
                             <a href="https://tiktok.com/@ighoroje.int.ent" target="_blank" rel="noopener"
                                 class="chat-link tiktok">
-                                <svg class="ico"><use href="#i-tiktok" /></svg>
+                                <svg class="ico">
+                                    <use href="#i-tiktok" />
+                                </svg>
                                 TT
                             </a>
                         </div>
@@ -2472,7 +2689,7 @@
                 <div class="brand-tile"><span class="b-mark">H</span><span class="b-name">Hisense</span><span
                         class="b-tag">Appliances & TVs</span></div>
                 <div class="brand-tile"><span class="b-mark">M</span><span class="b-name">MeWe</span><span
-                        class="b-tag">Solar</span></div>
+                        class="b-tag">Electronics & Solar</span></div>
                 <div class="brand-tile">
                     <span class="b-mark">N</span>
                     <span class="b-name">Nexus</span>
@@ -2598,8 +2815,7 @@
                 </div>
 
                 <div class="about-image reveal reveal-d1">
-                    <img src="About.jpg"
-                        alt="IGHOROJE INTERNATIONAL ENTERPRISE storefront">
+                    <img src="About.jpg" alt="IGHOROJE INTERNATIONAL ENTERPRISE storefront">
                     <div class="badge">
                         <div class="num">80</div>
                         <div class="lbl">Isoko Road<br><strong>Ughelli · Delta State</strong></div>
@@ -2793,8 +3009,8 @@
                         aria-label="Instagram"><svg class="ico">
                             <use href="#i-instagram" />
                         </svg></a>
-                    <a href="https://tiktok.com/@ighoroje.int.ent" target="_blank" rel="noopener" aria-label="TikTok"><svg
-                            class="ico">
+                    <a href="https://tiktok.com/@ighoroje.int.ent" target="_blank" rel="noopener"
+                        aria-label="TikTok"><svg class="ico">
                             <use href="#i-tiktok" />
                         </svg></a>
                 </div>
@@ -2811,8 +3027,11 @@
                 <span class="eyebrow">In-Stock Catalog</span>
                 <h2 class="h2" id="brandModalTitle">Brand Name</h2>
                 <div class="price-warning">
-                    <svg class="ico"><use href="#i-info" /></svg>
-                    <span><strong>Notice:</strong> Prices are subject to change based on current market rates. Please confirm final pricing and negotiate directly via WhatsApp.</span>
+                    <svg class="ico">
+                        <use href="#i-info" />
+                    </svg>
+                    <span><strong>Notice:</strong> Prices are subject to change based on current market rates. Please
+                        confirm final pricing and negotiate directly via WhatsApp.</span>
                 </div>
             </div>
             <div class="brand-modal-grid" id="brandModalGrid">
@@ -2820,7 +3039,9 @@
             </div>
             <div class="brand-modal-footer">
                 <a href="#" id="brandModalWaLink" class="btn btn-whatsapp" target="_blank" rel="noopener">
-                    <svg class="ico"><use href="#i-whatsapp" /></svg>
+                    <svg class="ico">
+                        <use href="#i-whatsapp" />
+                    </svg>
                     Enquire / Buy on WhatsApp
                 </a>
             </div>
@@ -2875,143 +3096,177 @@
         window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
         // ===== BRAND CATALOG MODAL =====
+        // Categorized Brand Catalogs
         const brandCatalogs = {
             'Nexus': [
-                { name: 'NX-MSHFB-12CR410 Inverter AC', price: '₦400,000', img: '400K.jpg' },
-                { name: 'NX-WM-100AK Power Wash Washer', price: '₦410,000', img: '410K.jpg' },
-                { name: 'Nexus Standing Air Conditioner', price: '₦890,000', img: '890K.jpg' },
-                { name: 'Nexus Double Door Commercial Chiller', price: '₦1,050,000', img: 'chiller 1,050,000.jpg' },
-                { name: 'NX-400HEI Chest Freezer', price: '₦300,000', img: 'NX-400HEI 300k.jpg' },
-                { name: 'NX-400HEI Inverter Chest Freezer', price: '₦460,000', img: 'NX-400HEI 460K.jpg' },
-                { name: 'NX-490H Chest Freezer', price: '₦495,000', img: 'NX-490H 495k.jpg' },
-                { name: 'NX-6003 (4+0) Gas Cooker', price: '₦235,000', img: 'NX-6003(4+0) 235k.jpg' },
-                { name: 'NX-9001 Gas Cooker', price: '₦480,000', img: 'NX-9001 480k.jpg' },
-                { name: 'Nexus Compact Refrigerator', price: '₦120,000', img: 'This Is Refrigerator for Nexus 120k.jpg' }
+                { name: 'NX-MSHFB-12CR410 Inverter AC', price: '₦400,000', img: '400K.jpg', category: 'Air Conditioners' },
+                { name: 'NX-WM-100AK Power Wash Washer', price: '₦410,000', img: '410K.jpg', category: 'Washing Machines' },
+                { name: 'Nexus Standing AC', price: '₦890,000', img: '890K.jpg', category: 'Air Conditioners' },
+                { name: 'Nexus Double Door Commercial Chiller', price: '₦1,050,000', img: 'chiller 1,050,000.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'NX-400HEI Chest Freezer', price: '₦300,000', img: 'NX-400HEI 300k.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'NX-400HEI Inverter Chest Freezer', price: '₦460,000', img: 'NX-400HEI 460K.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'NX-490H Chest Freezer', price: '₦495,000', img: 'NX-490H 495k.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'NX-6003 (4+0) Gas Cooker', price: '₦235,000', img: 'NX-6003(4+0) 235k.jpg', category: 'Cookers' },
+                { name: 'NX-9001 Gas Cooker', price: '₦480,000', img: 'NX-9001 480k.jpg', category: 'Cookers' },
+                { name: 'Nexus Single Door Refrigerator', price: '₦120,000', img: 'This Is Refrigerator for Nexus 120k.jpg', category: 'Refrigerators & Freezers' }
             ],
             'Thermocool': [
-                { name: 'HRF-355BLUX Refrigerator', price: '₦500,000', img: 'HRF-355Blux 500k.jpg' },
-                { name: 'HRF-355BLUX Luxury Refrigerator', price: '₦670,000', img: 'HRF-355Blux 670k.jpg' },
-                { name: 'HTF-219IS Chest Freezer', price: '₦500,000', img: 'HTF-219IS 500k.jpg' },
-                { name: 'HTF-319VW Chest Freezer', price: '₦630,000', img: 'HTF-319VW 630k.jpg' },
-                { name: 'Thermocool Washing Machine', price: '₦530,000', img: 'Thermcool washing machine 530k.jpg' }
+                { name: 'HRF-355BLUX Refrigerator', price: '₦500,000', img: 'HRF-355Blux 500k.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'HRF-355BLUX Luxury Refrigerator', price: '₦670,000', img: 'HRF-355Blux 670k.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'HTF-219IS Chest Freezer', price: '₦500,000', img: 'HTF-219IS 500k.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'HTF-319VW Chest Freezer', price: '₦630,000', img: 'HTF-319VW 630k.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'Thermocool Washing Machine', price: '₦530,000', img: 'Thermcool washing machine 530k.jpg', category: 'Washing Machines' }
             ],
             'Scanfrost': [
-                { name: 'Scanfrost Gas Cooker', price: '₦330,000', img: '330 scan frost gas cooker.jpg' },
-                { name: 'Scanfrost Premium Gas Cooker', price: '₦535,000', img: '535k.jpg' },
-                { name: 'Scanfrost Gas Cooker Oven', price: '₦620,000', img: '620k scan frost gas cooker.jpg' },
-                { name: 'Scanfrost Appliance', price: '₦650,000', img: '650K scan frost.jpg' },
-                { name: 'SFL200ECO Chest Freezer', price: '₦420,000', img: 'SFL200ECO 420k.jpg' },
-                { name: 'SFL250ECO Chest Freezer', price: '₦425,000', img: 'SFL250ECO 425k.jpg' },
-                { name: 'SFL250INV Inverter Freezer', price: '₦480,000', img: 'SFL250INV 480k.jpg' },
-                { name: 'SFL300INV Inverter Freezer', price: '₦565,000', img: 'SFL300INV 565k.jpg' },
-                { name: 'SFL400INV Inverter Freezer', price: '₦689,000', img: 'SFL400INV 689k.jpg' },
-                { name: 'SFL500INV Inverter Freezer', price: '₦930,000', img: 'SFL500INV 930k.jpg' },
-                { name: 'SFR210DM Refrigerator', price: '₦360,000', img: 'SFR210DM 360k .jpg' },
-                { name: 'FL-31FC Beverage Cooler', price: '₦469,000', img: 'FL-31FC Beverage cooler 469k.jpg' },
-                { name: 'Scanfrost Air Conditioner', price: '₦400,000', img: 'Scan frost AC 400k.jpg' },
-                { name: 'Scanfrost Washing Machine 7.65kg', price: '₦765,000', img: 'scan frost washing machine 765K.jpg' },
-                { name: 'SFWM1100INVME Washing Machine', price: '₦535,000', img: 'SFWM1100INVME 535k.jpg' },
-                { name: 'SFWMTLBQ80 Top Load Washer', price: '₦355,000', img: 'SFWMTLBQ80 355k.jpg' },
-                { name: 'SFWMTT5.5A Twin Tub Washer', price: '₦195,000', img: 'SFWMTT5.5A 195k.jpg' },
-                { name: 'SFSANTTD6 Appliance', price: '₦228,000', img: 'SFSANTTD6 228k.jpg' },
-                { name: 'Scanfrost Double Door Refrigerator', price: '₦394,000', img: '394k .jpg' },
-                { name: 'SFWMTL12ME Top Load Washer', price: '₦435,000', img: 'Freezer s 435k.jpg' }
+                { name: 'Scanfrost Gas Cooker', price: '₦330,000', img: '330 scan frost gas cooker.jpg', category: 'Cookers' },
+                { name: 'Scanfrost Premium Gas Cooker', price: '₦535,000', img: '535k.jpg', category: 'Cookers' },
+                { name: 'Scanfrost Gas Cooker Oven', price: '₦620,000', img: '620k scan frost gas cooker.jpg', category: 'Cookers' },
+                { name: 'Scanfrost Appliance', price: '₦650,000', img: '650K scan frost.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'SFL200ECO Chest Freezer', price: '₦420,000', img: 'SFL200ECO 420k.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'SFL250ECO Chest Freezer', price: '₦425,000', img: 'SFL250ECO 425k.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'SFL250INV Inverter Freezer', price: '₦480,000', img: 'SFL250INV 480k.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'SFL300INV Inverter Freezer', price: '₦565,000', img: 'SFL300INV 565k.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'SFL400INV Inverter Freezer', price: '₦689,000', img: 'SFL400INV 689k.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'SFL500INV Inverter Freezer', price: '₦930,000', img: 'SFL500INV 930k.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'SFR210DM Refrigerator', price: '₦360,000', img: 'SFR210DM 360k .jpg', category: 'Refrigerators & Freezers' },
+                { name: 'FL-31FC Beverage Cooler', price: '₦469,000', img: 'FL-31FC Beverage cooler 469k.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'Scanfrost Split AC', price: '₦400,000', img: 'Scan frost AC 400k.jpg', category: 'Air Conditioners' },
+                { name: 'Scanfrost Washing Machine 7.65kg', price: '₦765,000', img: 'scan frost washing machine 765K.jpg', category: 'Washing Machines' },
+                { name: 'SFWM1100INVME Inverter Washing Machine', price: '₦535,000', img: 'SFWM1100INVME 535k.jpg', category: 'Washing Machines' },
+                { name: 'SFWMTLBQ80 Top Load Washer', price: '₦355,000', img: 'SFWMTLBQ80 355k.jpg', category: 'Washing Machines' },
+                { name: 'SFWMTT5.5A Twin Tub Washer', price: '₦195,000', img: 'SFWMTT5.5A 195k.jpg', category: 'Washing Machines' },
+                { name: 'SFSANTTD6 Appliance', price: '₦228,000', img: 'SFSANTTD6 228k.jpg', category: 'Cookers' },
+                { name: 'Scanfrost Double Door Refrigerator', price: '₦394,000', img: '394k .jpg', category: 'Refrigerators & Freezers' },
+                { name: 'SFWMTL12ME Top Load Washer', price: '₦435,000', img: 'Freezer s 435k.jpg', category: 'Washing Machines' }
             ],
             'LG': [
-                { name: '1.5HP Air Conditioner', price: '₦495,000', img: '1.5HP Air-Condition LG 495k.jpg' },
-                { name: '43UA73006LA 43" Smart TV', price: '₦390,000', img: '43UA73006LA 390k.jpg' },
-                { name: '86UA85006LA 86" UHD TV', price: '₦1,530,000', img: '86UA85006LA 1,530,000.jpg' },
-                { name: 'F0Z8DRP24 Washer/Dryer', price: '₦1,200,000', img: 'F0Z8DRP24 1,200,000.jpg' },
-                { name: 'FC91DD Front Load Washer', price: '₦900,000', img: 'FC91DD 900k.jpg' },
-                { name: 'GCFB205BQCF Refrigerator', price: '₦265,000', img: 'GCFB205BQCF 265k.jpg' },
-                { name: 'GCFB255BQCF Refrigerator', price: '₦309,000', img: 'GCFB255BQCF 309k.jpg' },
-                { name: 'GL-B242PQKB Refrigerator', price: '₦510,000', img: 'GL-B242PQKB 510k.jpg' },
-                { name: 'GN-Y33ISLSR Refrigerator', price: '₦310,000', img: 'GN-Y33ISLSR 310k.jpg' },
-                { name: 'P1401RON9T Twin Tub Washer', price: '₦368,000', img: 'P1401RON9T 368k.jpg' },
-                { name: 'P1861RWN9T Twin Tub Washer', price: '₦400,000', img: 'P1861RWN9T 400k.jpg' }
+                { name: '1.5HP Split AC', price: '₦495,000', img: '1.5HP Air-Condition LG 495k.jpg', category: 'Air Conditioners' },
+                { name: '43UA73006LA 43" Smart TV', price: '₦390,000', img: '43UA73006LA 390k.jpg', category: 'Televisions' },
+                { name: '86UA85006LA 86" UHD TV', price: '₦1,530,000', img: '86UA85006LA 1,530,000.jpg', category: 'Televisions' },
+                { name: 'F0Z8DRP24 Washer/Dryer', price: '₦1,200,000', img: 'F0Z8DRP24 1,200,000.jpg', category: 'Washing Machines' },
+                { name: 'FC91DD Front Load Washer', price: '₦900,000', img: 'FC91DD 900k.jpg', category: 'Washing Machines' },
+                { name: 'GCFB205BQCF Refrigerator', price: '₦265,000', img: 'GCFB205BQCF 265k.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'GCFB255BQCF Refrigerator', price: '₦309,000', img: 'GCFB255BQCF 309k.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'GL-B242PQKB Refrigerator', price: '₦510,000', img: 'GL-B242PQKB 510k.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'GN-Y33ISLSR Refrigerator', price: '₦310,000', img: 'GN-Y33ISLSR 310k.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'P1401RON9T Twin Tub Washer', price: '₦368,000', img: 'P1401RON9T 368k.jpg', category: 'Washing Machines' },
+                { name: 'P1861RWN9T Twin Tub Washer', price: '₦400,000', img: 'P1861RWN9T 400k.jpg', category: 'Washing Machines' }
             ],
             'Hisense': [
-                { name: '1HP Air Conditioner AS09DK', price: '₦370,000', img: '1HP AIR-CONDITION 370k.jpg' },
-                { name: 'Hisense Smart TV', price: '₦320,000', img: 'Hisence tv 320k.jpg' },
-                { name: 'Hisense Smart TV 65"', price: '₦685,000', img: 'Hisense tv 685k.jpg' },
-                { name: 'Hisense Chest Freezer', price: '₦240,000', img: 'Hisense freezer 240k.jpg' },
-                { name: 'Hisense Washing Machine', price: '₦240,000', img: 'Hisense washing machine 240k.jpg' },
-                { name: 'RD-29DCA Refrigerator', price: '₦395,000', img: 'RD-29DCA 395,000.jpg' }
+                { name: '1HP Air Conditioner AS09DK', price: '₦370,000', img: '1HP AIR-CONDITION 370k.jpg', category: 'Air Conditioners' },
+                { name: 'Hisense Smart TV', price: '₦320,000', img: 'Hisence tv 320k.jpg', category: 'Televisions' },
+                { name: 'Hisense Smart TV 65"', price: '₦685,000', img: 'Hisense tv 685k.jpg', category: 'Televisions' },
+                { name: 'Hisense Chest Freezer', price: '₦240,000', img: 'Hisense freezer 240k.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'Hisense Washing Machine', price: '₦240,000', img: 'Hisense washing machine 240k.jpg', category: 'Washing Machines' },
+                { name: 'RD-29DCA Refrigerator', price: '₦395,000', img: 'RD-29DCA 395,000.jpg', category: 'Refrigerators & Freezers' }
             ],
             'Bruhm': [
-                { name: '2HP Standing Air Conditioner', price: '₦695,000', img: '2HP Brhum Standing AC 695k.jpg' },
-                { name: 'BCS-210MR Freezer / Chiller', price: '₦300,000', img: 'BCS-210MR 300k.jpg' },
-                { name: 'Bruhm Refrigerator', price: '₦390,000', img: 'Bruhm 390k.jpg' },
-                { name: 'Bruhm Showcase Chiller', price: '₦460,000', img: 'Bruhm Chiller 460k.jpg' },
-                { name: 'Bruhm Commercial Freezer', price: '₦1,365,000', img: 'Bruhm Freezer 1,365,000.jpg' },
-                { name: 'Bruhm Gas Cooker', price: '₦155,000', img: 'Bruhm Gas cooker 155k.jpg' },
-                { name: 'Bruhm Chest Freezer', price: '₦300,000', img: 'Bruhm freezer 300k.jpg' }
+                { name: '2HP Standing Air Conditioner', price: '₦695,000', img: '2HP Brhum Standing AC 695k.jpg', category: 'Air Conditioners' },
+                { name: 'BCS-210MR Freezer / Chiller', price: '₦300,000', img: 'BCS-210MR 300k.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'Bruhm Refrigerator', price: '₦390,000', img: 'Bruhm 390k.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'Bruhm Showcase Chiller', price: '₦460,000', img: 'Bruhm Chiller 460k.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'Bruhm Commercial Freezer', price: '₦1,365,000', img: 'Bruhm Freezer 1,365,000.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'Bruhm Gas Cooker', price: '₦155,000', img: 'Bruhm Gas cooker 155k.jpg', category: 'Cookers' },
+                { name: 'Bruhm Chest Freezer', price: '₦300,000', img: 'Bruhm freezer 300k.jpg', category: 'Refrigerators & Freezers' }
             ],
             'Brhum': [
-                { name: '2HP Standing Air Conditioner', price: '₦695,000', img: '2HP Brhum Standing AC 695k.jpg' },
-                { name: 'BCS-210MR Freezer / Chiller', price: '₦300,000', img: 'BCS-210MR 300k.jpg' },
-                { name: 'Bruhm Refrigerator', price: '₦390,000', img: 'Bruhm 390k.jpg' },
-                { name: 'Bruhm Showcase Chiller', price: '₦460,000', img: 'Bruhm Chiller 460k.jpg' },
-                { name: 'Bruhm Commercial Freezer', price: '₦1,365,000', img: 'Bruhm Freezer 1,365,000.jpg' },
-                { name: 'Bruhm Gas Cooker', price: '₦155,000', img: 'Bruhm Gas cooker 155k.jpg' },
-                { name: 'Bruhm Chest Freezer', price: '₦300,000', img: 'Bruhm freezer 300k.jpg' }
+                { name: '2HP Standing Air Conditioner', price: '₦695,000', img: '2HP Brhum Standing AC 695k.jpg', category: 'Air Conditioners' },
+                { name: 'BCS-210MR Freezer / Chiller', price: '₦300,000', img: 'BCS-210MR 300k.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'Bruhm Refrigerator', price: '₦390,000', img: 'Bruhm 390k.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'Bruhm Showcase Chiller', price: '₦460,000', img: 'Bruhm Chiller 460k.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'Bruhm Commercial Freezer', price: '₦1,365,000', img: 'Bruhm Freezer 1,365,000.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'Bruhm Gas Cooker', price: '₦155,000', img: 'Bruhm Gas cooker 155k.jpg', category: 'Cookers' },
+                { name: 'Bruhm Chest Freezer', price: '₦300,000', img: 'Bruhm freezer 300k.jpg', category: 'Refrigerators & Freezers' }
             ],
             'MeWe': [
-                { name: 'MeWe 4K Smart TV', price: '₦1,450,000', img: 'Mewe Tv 1,450,000.jpg' },
-                { name: 'MeWe Air Conditioner', price: '₦410,000', img: 'Mewe ac 410k.jpg' },
-                { name: 'MeWe Smart TV', price: '₦246,000', img: 'Mewe smart TV 246k.jpg' },
-                { name: 'Solar Inverter System', price: 'Price on Enquiry', img: 'solar.jpg' }
+                { name: 'MeWe 4K Smart TV', price: '₦1,450,000', img: 'Mewe Tv 1,450,000.jpg', category: 'Televisions' },
+                { name: 'MeWe 65" 4K Smart TV', price: '₦590,000', img: 'Mewe Smart Tv 590k.jpg', category: 'Televisions' },
+                { name: 'MeWe Smart TV', price: '₦246,000', img: 'Mewe smart TV 246k.jpg', category: 'Televisions' },
+                { name: 'MeWe 32" Whale Smart TV', price: '₦160,000', img: 'Mewe Whale Tv 160k.jpg', category: 'Televisions' },
+                { name: 'MeWe Dual-Woofer Party Speaker (1500W)', price: '₦390,000', img: 'Mewe Speaker 390k.jpg', category: 'Audio & Speakers' },
+                { name: 'MeWe High-Power Party Speaker (1200W)', price: '₦270,000', img: 'Mewe Speaker 270k.jpg', category: 'Audio & Speakers' },
+                { name: 'MeWe Portable Party Speaker (600W)', price: '₦170,000', img: 'Mewe Speaker 170k.jpg', category: 'Audio & Speakers' },
+                { name: 'MeWe Electric Oven with Hotplates', price: '₦135,000', img: 'Mewe Electric Oven 135k.jpg', category: 'Kitchen Appliances' },
+                { name: 'MeWe Air Fryer 6L', price: '₦75,000', img: 'Mewe Air Fryer 75k.jpg', category: 'Kitchen Appliances' },
+                { name: 'MeWe Electric Kettle', price: '₦25,000', img: 'Mewe Electric Kettle 25k.jpg', category: 'Kitchen Appliances' },
+                { name: 'MeWe Air Conditioner', price: '₦410,000', img: 'Mewe ac 410k.jpg', category: 'Air Conditioners' },
+                { name: 'Solar Inverter System', price: 'Price on Enquiry', img: 'solar.jpg', category: 'Solar' }
             ],
             'TCL': [
-                { name: 'TCL Chest Freezer', price: '₦650,000', img: '650K.jpg' },
-                { name: 'TCL Standing Air Conditioner', price: '₦950,000', img: '950k.jpg' },
-                { name: 'TCL Google TV 75"', price: '₦1,035,000', img: 'TCL Google TV 1,035,000.jpg' },
-                { name: 'TCL Google TV 55"', price: '₦530,000', img: 'TCL Google TV 530k.jpg' },
-                { name: 'TCL Refrigerator', price: '₦535,000', img: 'TCL refrigerator 535k.jpg' }
-            ],
-            'default': [
-                { name: 'Product Model A', price: 'Price on Enquiry' },
-                { name: 'Product Model B', price: 'Price on Enquiry' }
+                { name: 'TCL Chest Freezer', price: '₦650,000', img: '650K.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'TCL Standing Air Conditioner', price: '₦950,000', img: '950k.jpg', category: 'Air Conditioners' },
+                { name: 'TCL Google TV 75"', price: '₦1,035,000', img: 'TCL Google TV 1,035,000.jpg', category: 'Televisions' },
+                { name: 'TCL Google TV 55"', price: '₦530,000', img: 'TCL Google TV 530k.jpg', category: 'Televisions' },
+                { name: 'TCL Refrigerator', price: '₦535,000', img: 'TCL refrigerator 535k.jpg', category: 'Refrigerators & Freezers' }
             ]
         };
-
-
 
         const brandModal = document.getElementById('brandModal');
         const brandModalClose = document.getElementById('brandModalClose');
         const brandModalOverlay = document.getElementById('brandModalOverlay');
+
+        function renderModalProducts(brandName, products, selectedCat = 'All') {
+            const grid = document.getElementById('brandModalGrid');
+            grid.innerHTML = '';
+
+            const filtered = selectedCat === 'All'
+                ? products
+                : products.filter(p => p.category === selectedCat);
+
+            filtered.forEach(p => {
+                const imgUrl = p.img ? p.img : `https://picsum.photos/seed/${brandName}-${p.name}/300/200`;
+                const waText = `Hello IGHOROJE INTERNATIONAL ENTERPRISE, I'm interested in the ${brandName} ${p.name} (${p.price}). Is it available?`;
+                const waLink = `https://wa.me/2348037932842?text=${encodeURIComponent(waText)}`;
+
+                grid.innerHTML += `
+                    <a href="${waLink}" target="_blank" rel="noopener" class="brand-product-card">
+                        <img src="${imgUrl}" alt="${p.name}">
+                        <div class="brand-product-body">
+                            <h4>${p.name}</h4>
+                            <span class="brand-product-price">${p.price}</span>
+                            <span class="brand-product-btn">
+                                <svg class="ico"><use href="#i-whatsapp" /></svg>
+                                Enquire on WhatsApp
+                            </span>
+                        </div>
+                    </a>
+                `;
+            });
+        }
 
         document.querySelectorAll('.brand-tile').forEach(tile => {
             tile.addEventListener('click', () => {
                 const brandName = tile.querySelector('.b-name').textContent;
                 document.getElementById('brandModalTitle').textContent = brandName;
 
-                const products = brandCatalogs[brandName] || brandCatalogs['default'];
-                const grid = document.getElementById('brandModalGrid');
-                grid.innerHTML = '';
+                const products = brandCatalogs[brandName] || [];
 
-                products.forEach(p => {
-                    // If you added an 'img', use it. If not, use a placeholder.
-                    const imgUrl = p.img ? p.img : `https://picsum.photos/seed/${brandName}-${p.name}/300/200`;
+                // Get unique categories for this brand
+                const categories = ['All', ...new Set(products.map(p => p.category).filter(Boolean))];
 
-                    // Create a custom WhatsApp message for this specific product
-                    const waText = `Hello IGHOROJE INTERNATIONAL ENTERPRISE, I'm interested in the ${brandName} ${p.name} (${p.price}). Is it available?`;
-                    const waLink = `https://wa.me/2348037932842?text=${encodeURIComponent(waText)}`;
+                // Render category filter buttons
+                let filterContainer = document.getElementById('brandModalCategories');
+                if (!filterContainer) {
+                    filterContainer = document.createElement('div');
+                    filterContainer.id = 'brandModalCategories';
+                    filterContainer.className = 'brand-modal-categories';
+                    const grid = document.getElementById('brandModalGrid');
+                    grid.parentNode.insertBefore(filterContainer, grid);
+                }
 
-                    grid.innerHTML += `
-                        <a href="${waLink}" target="_blank" rel="noopener" class="brand-product-card">
-                            <img src="${imgUrl}" alt="${p.name}">
-                            <div class="brand-product-body">
-                                <h4>${p.name}</h4>
-                                <span class="brand-product-price">${p.price}</span>
-                                <span class="brand-product-btn">
-                                    <svg class="ico"><use href="#i-whatsapp" /></svg>
-                                    Enquire on WhatsApp
-                                </span>
-                            </div>
-                        </a>
-                    `;
+                filterContainer.innerHTML = categories.map((cat, idx) => `
+                    <button class="cat-pill ${idx === 0 ? 'active' : ''}" data-cat="${cat}">${cat}</button>
+                `).join('');
+
+                filterContainer.querySelectorAll('.cat-pill').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        filterContainer.querySelectorAll('.cat-pill').forEach(b => b.classList.remove('active'));
+                        e.target.classList.add('active');
+                        renderModalProducts(brandName, products, e.target.getAttribute('data-cat'));
+                    });
                 });
+
+                renderModalProducts(brandName, products, 'All');
 
                 const waLink = `https://wa.me/2348037932842?text=Hello%20IGHOROJE%20INTERNATIONAL%20ENTERPRISE%2C%20I%27d%20like%20to%20enquire%20about%20${encodeURIComponent(brandName)}%20products.`;
                 document.getElementById('brandModalWaLink').href = waLink;
@@ -3020,6 +3275,7 @@
                 document.body.style.overflow = 'hidden';
             });
         });
+
 
         function closeBrandModal() {
             brandModal.classList.remove('active');
