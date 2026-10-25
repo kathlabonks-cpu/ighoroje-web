@@ -941,74 +941,171 @@
 
         /* ============ BRANDS ============ */
         .brands-section {
-            background: var(--paper);
-            padding: 5.5rem 0;
+            background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 50%, var(--paper) 100%);
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .brand-section-hint {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--navy-50);
+            border: 1px solid var(--navy-100);
+            color: var(--navy-700);
+            padding: 0.6rem 1.25rem;
+            border-radius: 999px;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            margin-top: 1.25rem;
+            box-shadow: 0 2px 8px rgba(11, 37, 69, 0.04);
+        }
+
+        .brand-section-hint .hint-pulse {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--navy-500);
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.2);
+            animation: hintPulse 2s infinite;
+        }
+
+        @keyframes hintPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(30, 64, 175, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 6px rgba(30, 64, 175, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(30, 64, 175, 0);
+            }
         }
 
         .brands-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 1px;
-            background: var(--line);
-            border: 1px solid var(--line);
-            border-radius: 14px;
-            overflow: hidden;
+            gap: 1.25rem;
+            margin-top: 2.5rem;
         }
 
         .brand-tile {
             background: var(--paper);
-            padding: 2.25rem 1.5rem;
+            border: 1.5px solid var(--line);
+            border-radius: 14px;
+            padding: 2.25rem 1.5rem 1.75rem;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
             text-align: center;
-            transition: background 250ms;
-            min-height: 140px;
             position: relative;
             cursor: pointer;
+            transition: all 300ms var(--ease);
+            box-shadow: 0 4px 14px rgba(11, 37, 69, 0.03);
+            overflow: hidden;
         }
 
         .brand-tile:hover {
+            transform: translateY(-5px);
+            border-color: var(--navy-500);
+            box-shadow: 0 16px 32px rgba(11, 37, 69, 0.12);
+            background: #ffffff;
+        }
+
+        .brand-count-badge {
+            position: absolute;
+            top: 0.85rem;
+            right: 0.85rem;
             background: var(--navy-50);
-        }
-
-        .brand-tile .b-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            font-weight: 500;
             color: var(--navy-700);
-            letter-spacing: 0.01em;
+            font-size: 0.6875rem;
+            font-weight: 600;
+            padding: 0.25rem 0.65rem;
+            border-radius: 999px;
+            border: 1px solid var(--navy-100);
+            transition: all 250ms var(--ease);
         }
 
-        .brand-tile .b-tag {
-            font-size: 0.625rem;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: var(--ink-500);
+        .brand-tile:hover .brand-count-badge {
+            background: var(--navy-700);
+            color: #ffffff;
+            border-color: var(--navy-700);
         }
 
         .brand-tile .b-mark {
-            width: 28px;
-            height: 28px;
+            width: 36px;
+            height: 36px;
             border: 1.5px solid var(--navy-200);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 0.5rem;
-            color: var(--navy-500);
+            margin-bottom: 0.6rem;
+            color: var(--navy-700);
             font-family: 'Cormorant Garamond', serif;
-            font-weight: 500;
-            font-size: 0.875rem;
-            transition: all 250ms;
+            font-weight: 600;
+            font-size: 1rem;
+            background: var(--navy-50);
+            transition: all 250ms var(--ease);
         }
 
         .brand-tile:hover .b-mark {
             background: var(--navy-700);
             border-color: var(--navy-700);
             color: #fff;
+            transform: scale(1.08);
+        }
+
+        .brand-tile .b-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.65rem;
+            font-weight: 600;
+            color: var(--navy-700);
+            letter-spacing: 0.01em;
+            line-height: 1.15;
+            margin-bottom: 0.25rem;
+        }
+
+        .brand-tile .b-tag {
+            font-size: 0.6875rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--ink-500);
+            font-weight: 500;
+            margin-bottom: 1.25rem;
+        }
+
+        .brand-action-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--navy-500);
+            background: var(--navy-50);
+            padding: 0.45rem 0.95rem;
+            border-radius: 999px;
+            border: 1px solid var(--navy-100);
+            transition: all 250ms var(--ease);
+        }
+
+        .brand-action-pill .arrow {
+            transition: transform 250ms var(--ease);
+            font-size: 0.85rem;
+            line-height: 1;
+        }
+
+        .brand-tile:hover .brand-action-pill {
+            background: var(--navy-700);
+            color: #ffffff;
+            border-color: var(--navy-700);
+        }
+
+        .brand-tile:hover .brand-action-pill .arrow {
+            transform: translateX(3px);
         }
 
         /* ============ SERVICES ============ */
@@ -2461,6 +2558,7 @@
             <nav class="nav">
                 <a href="#home">Home</a>
                 <a href="#products">Products</a>
+                <a href="#brands">Brands</a>
                 <a href="#services">Services</a>
                 <a href="#about">About</a>
                 <a href="#contact">Contact</a>
@@ -2495,6 +2593,7 @@
         <nav class="mobile-menu-nav">
             <a href="#home">Home</a>
             <a href="#products">Products</a>
+            <a href="#brands">Brands</a>
             <a href="#services">Services</a>
             <a href="#about">About</a>
             <a href="#contact">Contact</a>
@@ -2900,32 +2999,75 @@
     <section class="brands-section" id="brands">
         <div class="container">
             <div class="section-head center reveal">
-                <span class="eyebrow">Brand Partners</span>
-                <h2 class="h2">Brands we sell</h2>
-                <p>Genuine, warrantied products from names recognized across Nigeria. Click below to see the products in
-                    each brand.</p>
+                <span class="eyebrow">Direct Brand Catalogs</span>
+                <h2 class="h2">Explore products & pricing by brand</h2>
+                <p>Genuine, warrantied electronics from Nigeria's top manufacturers with full specifications and
+                    negotiable pricing.</p>
+                <div>
+                    <span class="brand-section-hint">
+                        <span class="hint-pulse"></span>
+                        Click any brand below to view in-stock models, photos & instant enquiry options
+                    </span>
+                </div>
             </div>
 
             <div class="brands-grid reveal">
-                <div class="brand-tile"><span class="b-mark">T</span><span class="b-name">Thermocool</span><span
-                        class="b-tag">Cooling & Appliances</span></div>
-                <div class="brand-tile"><span class="b-mark">S</span><span class="b-name">Scanfrost</span><span
-                        class="b-tag">Power & Cooling</span></div>
-                <div class="brand-tile"><span class="b-mark">L</span><span class="b-name">LG</span><span
-                        class="b-tag">Electronics</span></div>
-                <div class="brand-tile"><span class="b-mark">H</span><span class="b-name">Hisense</span><span
-                        class="b-tag">Appliances & TVs</span></div>
-                <div class="brand-tile"><span class="b-mark">M</span><span class="b-name">MeWe</span><span
-                        class="b-tag">Electronics & Solar</span></div>
                 <div class="brand-tile">
+                    <span class="brand-count-badge">5 in stock</span>
+                    <span class="b-mark">T</span>
+                    <span class="b-name">Thermocool</span>
+                    <span class="b-tag">Cooling & Appliances</span>
+                    <span class="brand-action-pill">View Products <span class="arrow">→</span></span>
+                </div>
+                <div class="brand-tile">
+                    <span class="brand-count-badge">19 in stock</span>
+                    <span class="b-mark">S</span>
+                    <span class="b-name">Scanfrost</span>
+                    <span class="b-tag">Power & Cooling</span>
+                    <span class="brand-action-pill">View Products <span class="arrow">→</span></span>
+                </div>
+                <div class="brand-tile">
+                    <span class="brand-count-badge">11 in stock</span>
+                    <span class="b-mark">L</span>
+                    <span class="b-name">LG</span>
+                    <span class="b-tag">Electronics & Living</span>
+                    <span class="brand-action-pill">View Products <span class="arrow">→</span></span>
+                </div>
+                <div class="brand-tile">
+                    <span class="brand-count-badge">7 in stock</span>
+                    <span class="b-mark">H</span>
+                    <span class="b-name">Hisense</span>
+                    <span class="b-tag">Smart TVs & Freezers</span>
+                    <span class="brand-action-pill">View Products <span class="arrow">→</span></span>
+                </div>
+                <div class="brand-tile">
+                    <span class="brand-count-badge">12 in stock</span>
+                    <span class="b-mark">M</span>
+                    <span class="b-name">MeWe</span>
+                    <span class="b-tag">Electronics & Solar</span>
+                    <span class="brand-action-pill">View Products <span class="arrow">→</span></span>
+                </div>
+                <div class="brand-tile">
+                    <span class="brand-count-badge">10 in stock</span>
                     <span class="b-mark">N</span>
                     <span class="b-name">Nexus</span>
-                    <span class="b-tag">Home Appliances</span>
+                    <span class="b-tag">Home & Kitchen</span>
+                    <span class="brand-action-pill">View Products <span class="arrow">→</span></span>
                 </div>
-                <div class="brand-tile"><span class="b-mark">B</span><span class="b-name">Brhum</span><span
-                        class="b-tag">Cooling</span></div>
-                <div class="brand-tile"><span class="b-mark">T</span><span class="b-name">TCL</span><span
-                        class="b-tag">Televisions</span></div>
+                <div class="brand-tile">
+                    <span class="brand-count-badge">7 in stock</span>
+                    <span class="b-mark">B</span>
+                    <span class="b-name">Brhum</span>
+                    <span class="b-tag">Commercial Cooling</span>
+                    <span class="brand-action-pill">View Products <span class="arrow">→</span></span>
+                </div>
+                <div class="brand-tile">
+                    <span class="brand-count-badge">5 in stock</span>
+                    <span class="b-mark">T</span>
+                    <span class="b-name">TCL</span>
+                    <span class="b-tag">Google TVs & Cooling</span>
+                    <span class="brand-action-pill">View Products <span class="arrow">→</span></span>
+                </div>
             </div>
         </div>
     </section>
@@ -3397,7 +3539,7 @@
                 { name: '86UA85006LA 86" UHD TV', price: '₦1,530,000', img: '86UA85006LA 1,530,000.jpg', category: 'Televisions' },
                 { name: 'F0Z8DRP24 Washer/Dryer', price: '₦1,200,000', img: 'F0Z8DRP24 1,200,000.jpg', category: 'Washing Machines' },
                 { name: 'FC91DD Front Load Washer', price: '₦900,000', img: 'FC91DD 900k.jpg', category: 'Washing Machines' },
-                  { name: 'GCFB205BQCF Chest Freezer', price: '₦265,000', img: 'GCFB205BQCF 265k.jpg', category: 'Refrigerators & Freezers' },
+                { name: 'GCFB205BQCF Chest Freezer', price: '₦265,000', img: 'GCFB205BQCF 265k.jpg', category: 'Refrigerators & Freezers' },
                 { name: 'GCFB255BQCF Refrigerator', price: '₦309,000', img: 'GCFB255BQCF 309k.jpg', category: 'Refrigerators & Freezers' },
                 { name: 'GL-B242PQKB Refrigerator', price: '₦510,000', img: 'GL-B242PQKB 510k.jpg', category: 'Refrigerators & Freezers' },
                 { name: 'GN-Y33ISLSR Refrigerator', price: '₦310,000', img: 'GN-Y33ISLSR 310k.jpg', category: 'Refrigerators & Freezers' },
@@ -3635,7 +3777,7 @@
         brandModalOverlay.addEventListener('click', closeBrandModal);
         // Active nav link tracking
         const navLinks = document.querySelectorAll('.nav a');
-        const sections = ['home', 'products', 'services', 'about', 'contact'].map(id => document.getElementById(id));
+        const sections = ['home', 'products', 'brands', 'services', 'about', 'contact'].map(id => document.getElementById(id));
         const spy = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
