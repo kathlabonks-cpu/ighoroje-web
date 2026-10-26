@@ -21,6 +21,9 @@
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
+    <!-- Supabase JS Client (v2) for Live Database Sync -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <style>
         /* ============ RESET ============ */
         *,
@@ -3325,9 +3328,11 @@
                     <ul>
                         <li><a href="#home">Home</a></li>
                         <li><a href="#products">Products</a></li>
+                        <li><a href="#brands">Brands</a></li>
                         <li><a href="#services">Services</a></li>
                         <li><a href="#about">About</a></li>
                         <li><a href="#contact">Contact</a></li>
+                        <li><a href="admin.html" style="color: var(--gold); font-weight: 500;">🔒 Staff Portal</a></li>
                     </ul>
                 </div>
 
@@ -3490,8 +3495,13 @@
         window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
         // ===== BRAND CATALOG MODAL =====
-        // Categorized Brand Catalogs
-        const brandCatalogs = {
+        // ===== REAL-TIME SUPABASE BRAND CATALOGS =====
+        const SUPABASE_URL = "https://qigtiswdemzalhjjvkeg.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFpZ3Rpc3dkZW16YWxoamp2a2VnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMwMDc3NTEsImV4cCI6MjEwODU4Mzc1MX0.QCJ1121rnGqrov8EXuLJuRHD-1KaWrhT3l95EdoyNHo";
+        const sb = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+
+        // Categorized Brand Catalogs (Preloaded with current in-stock goods; synced live from Supabase)
+        let brandCatalogs = {
             'Nexus': [
                 { name: 'NX-MSHFB-12CR410 Inverter AC', price: '₦400,000', img: '400K.jpg', category: 'Air Conditioners' },
                 { name: 'NX-WM-100AK Power Wash Washer', price: '₦410,000', img: '410K.jpg', category: 'Washing Machines' },
@@ -3531,7 +3541,6 @@
                 { name: 'Scanfrost Automatic Washing Machine', price: '₦394,000', img: '394k .jpg', category: 'Washing Machines' },
                 { name: 'Scanfrost Gas Cooker', price: '₦650,000', img: '650K.jpg', category: 'Cookers' },
                 { name: 'SFWMTL12ME Double-door Refrigerator', price: '₦435,000', img: 'Freezer s 435k.jpg', category: 'Refrigerators & Freezers' }
-
             ],
             'LG': [
                 { name: '1.5HP Split AC', price: '₦495,000', img: '1.5HP Air-Condition LG 495k.jpg', category: 'Air Conditioners' },
@@ -3564,15 +3573,6 @@
                 { name: 'Bruhm Gas Cooker', price: '₦155,000', img: 'Bruhm Gas cooker 155k.jpg', category: 'Cookers' },
                 { name: 'Bruhm Chest Freezer', price: '₦300,000', img: 'Bruhm freezer 300k.jpg', category: 'Refrigerators & Freezers' }
             ],
-            'Brhum': [
-                { name: '2HP Standing Air Conditioner', price: '₦695,000', img: '2HP Brhum Standing AC 695k.jpg', category: 'Air Conditioners' },
-                { name: 'BCS-210MR Freezer / Chiller', price: '₦300,000', img: 'BCS-210MR 300k.jpg', category: 'Refrigerators & Freezers' },
-                { name: 'Bruhm Refrigerator', price: '₦390,000', img: 'Bruhm 390k.jpg', category: 'Refrigerators & Freezers' },
-                { name: 'Bruhm Showcase Chiller', price: '₦460,000', img: 'Bruhm Chiller 460k.jpg', category: 'Refrigerators & Freezers' },
-                { name: 'Bruhm Commercial Freezer', price: '₦1,365,000', img: 'Bruhm Freezer 1,365,000.jpg', category: 'Refrigerators & Freezers' },
-                { name: 'Bruhm Gas Cooker', price: '₦155,000', img: 'Bruhm Gas cooker 155k.jpg', category: 'Cookers' },
-                { name: 'Bruhm Chest Freezer', price: '₦300,000', img: 'Bruhm freezer 300k.jpg', category: 'Refrigerators & Freezers' }
-            ],
             'MeWe': [
                 { name: 'MeWe 4K Smart TV', price: '₦1,450,000', img: 'Mewe Tv 1,450,000.jpg', category: 'Televisions' },
                 { name: 'MeWe 65" 4K Smart TV', price: '₦590,000', img: 'Mewe Smart Tv 590k.jpg', category: 'Televisions' },
@@ -3596,6 +3596,49 @@
             ]
         };
 
+        // Sync with Supabase Live Database
+        async function syncLiveProducts() {
+            if (!sb) return;
+            try {
+                const { data, error } = await sb
+                    .from('products')
+                    .select('*')
+                    .eq('in_stock', true)
+                    .order('created_at', { ascending: false });
+
+                if (error || !data || data.length === 0) return;
+
+                const liveCatalogs = {};
+                data.forEach(item => {
+                    const brand = item.brand || 'Other';
+                    if (!liveCatalogs[brand]) liveCatalogs[brand] = [];
+                    liveCatalogs[brand].push({
+                        name: item.name,
+                        price: item.price_display || ('₦' + Number(item.price || 0).toLocaleString('en-NG')),
+                        img: item.image_url,
+                        category: item.category
+                    });
+                });
+
+                // Update runtime catalogs
+                brandCatalogs = liveCatalogs;
+
+                // Update in-stock badge counts on brand tiles
+                document.querySelectorAll('.brand-tile').forEach(tile => {
+                    const name = tile.querySelector('.b-name')?.textContent;
+                    if (name && brandCatalogs[name]) {
+                        const countBadge = tile.querySelector('.brand-count-badge');
+                        if (countBadge) {
+                            countBadge.textContent = `${brandCatalogs[name].length} in stock`;
+                        }
+                    }
+                });
+            } catch (e) {
+                console.log('Using local catalog cache:', e);
+            }
+        }
+        syncLiveProducts();
+
         const brandModal = document.getElementById('brandModal');
         const brandModalClose = document.getElementById('brandModalClose');
         const brandModalOverlay = document.getElementById('brandModalOverlay');
@@ -3607,6 +3650,11 @@
             const filtered = selectedCat === 'All'
                 ? products
                 : products.filter(p => p.category === selectedCat);
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 2rem; color: #64748B;">No products found in this category.</div>';
+                return;
+            }
 
             filtered.forEach(p => {
                 const imgUrl = p.img ? p.img : `https://picsum.photos/seed/${brandName}-${p.name}/300/200`;
@@ -3731,7 +3779,11 @@
                 const brandName = tile.querySelector('.b-name').textContent;
                 document.getElementById('brandModalTitle').textContent = brandName;
 
-                const products = brandCatalogs[brandName] || [];
+                // Support both Bruhm and Brhum spelling alias
+                let products = brandCatalogs[brandName] || [];
+                if (products.length === 0 && (brandName === 'Brhum' || brandName === 'Bruhm')) {
+                    products = brandCatalogs['Bruhm'] || brandCatalogs['Brhum'] || [];
+                }
 
                 // Get unique categories for this brand
                 const categories = ['All', ...new Set(products.map(p => p.category).filter(Boolean))];

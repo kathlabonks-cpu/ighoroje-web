@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal — IGHOROJE INTERNATIONAL ENTERPRISE</title>
+    <meta name="theme-color" content="#061226">
+    <link rel="icon" type="image/jpeg" href="ig p.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Supabase JS Client (v2) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+        :root {
+            --navy-950: #061226;
+            --navy-900: #0B2545;
+            --navy-800: #133966;
+            --navy-700: #1D4E89;
+            --gold: #D4AF37;
+            --gold-light: #F3E5AB;
+            --gold-hover: #E5C158;
+            --paper: #F6F8FB;
+            --card-bg: #FFFFFF;
+            --ink-900: #0F172A;
+            --ink-700: #334155;
+            --ink-500: #64748B;
+            --line: #E2E8F0;
+            --danger: #EF4444;
+            --danger-bg: #FEF2F2;
+            --success: #10B981;
+            --success-bg: #ECFDF5;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 8px 24px rgba(11, 37, 69, 0.08);
+            --shadow-lg: 0 16px 36px rgba(11, 37, 69, 0.12);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--paper);
+            color: var(--ink-900);
+            min-height: 100vh;
+            line-height: 1.5;
+            padding-bottom: 4rem;
+        }
+
+        /* ===== TOPBAR ===== */
+        .admin-nav {
+            background: var(--navy-950);
+            color: #fff;
+            padding: 0.9rem 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .admin-nav-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .brand-cluster {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .brand-cluster img {
+            height: 42px;
+            width: auto;
+            border-radius: 4px;
+        }
+
+        .brand-title h1 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+
+        .brand-title span {
+            font-size: 0.72rem;
+            color: var(--gold);
+            font-weight: 600;
+            display: block;
+            letter-spacing: 0.08em;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .view-site-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.82rem;
+            text-decoration: none;
+            padding: 0.45rem 0.85rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            transition: all 200ms;
+        }
+
+        .view-site-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .btn-logout {
+            background: rgba(239, 68, 68, 0.15);
+            color: #FCA5A5;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 0.45rem 0.85rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 200ms;
+        }
+
+        .btn-logout:hover {
+            background: var(--danger);
+            color: #fff;
+        }
+
+        /* ===== MAIN CONTAINER ===== */
+        .container {
+            max-width: 1280px;
+            margin: 2rem auto 0;
+            padding: 0 1.5rem;
+        }
+
+        /* ===== AUTH SCREEN ===== */
+        .auth-wrapper {
+            min-height: 75vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .auth-card {
+            background: var(--card-bg);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 440px;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+        }
+
+        .auth-card img {
+            height: 60px;
+            margin: 0 auto 1.25rem;
+            display: block;
+        }
+
+        .auth-card h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--navy-900);
+            margin-bottom: 0.35rem;
+        }
+
+        .auth-card p {
+            font-size: 0.88rem;
+            color: var(--ink-500);
+            margin-bottom: 1.75rem;
+        }
+
+        /* ===== FORMS ===== */
+        .form-group {
+            text-align: left;
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--ink-700);
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.01em;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 0.75rem 0.95rem;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 0.92rem;
+            color: var(--ink-900);
+            background: #fff;
+            transition: all 200ms;
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--navy-700);
+            box-shadow: 0 0 0 3px rgba(29, 78, 137, 0.15);
+        }
+
+        .btn-primary {
+            width: 100%;
+            background: var(--navy-900);
+            color: #fff;
+            font-weight: 600;
+            padding: 0.85rem;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 200ms;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            background: var(--navy-800);
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* ===== DASHBOARD STATS ===== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-md);
+            padding: 1.25rem 1.5rem;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .stat-card .val {
+            font-size: 1.85rem;
+            font-weight: 700;
+            color: var(--navy-900);
+            line-height: 1.1;
+        }
+
+        .stat-card .lbl {
+            font-size: 0.82rem;
+            color: var(--ink-500);
+            font-weight: 500;
+        }
+
+        /* ===== ACTION BAR & CONTROLS ===== */
+        .action-bar {
+            background: var(--card-bg);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-md);
+            padding: 1.25rem 1.5rem;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .filters-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .btn-add {
+            background: var(--gold);
+            color: var(--navy-950);
+            font-weight: 700;
+            padding: 0.75rem 1.4rem;
+            border-radius: var(--radius-sm);
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-size: 0.92rem;
+            transition: all 200ms;
+        }
+
+        .btn-add:hover {
+            background: var(--gold-hover);
+            transform: translateY(-1px);
+        }
+
+        /* ===== PRODUCTS GRID ===== */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            transition: all 200ms;
+            position: relative;
+        }
+
+        .product-card:hover {
+            box-shadow: var(--shadow-md);
+            border-color: #CBD5E1;
+        }
+
+        .card-img-wrap {
+            height: 200px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--line);
+            position: relative;
+            padding: 1rem;
+        }
+
+        .card-img-wrap img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .card-brand-badge {
+            position: absolute;
+            top: 0.75rem;
+            left: 0.75rem;
+            background: var(--navy-900);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            letter-spacing: 0.04em;
+        }
+
+        .stock-badge {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            letter-spacing: 0.02em;
+        }
+
+        .stock-badge.in-stock {
+            background: var(--success-bg);
+            color: #065F46;
+            border: 1px solid #A7F3D0;
+        }
+
+        .stock-badge.out-stock {
+            background: var(--danger-bg);
+            color: #991B1B;
+            border: 1px solid #FECACA;
+        }
+
+        .card-body {
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .card-category {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--ink-500);
+            letter-spacing: 0.05em;
+            margin-bottom: 0.35rem;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--navy-900);
+            margin-bottom: 0.5rem;
+            line-height: 1.35;
+        }
+
+        .card-price {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--navy-700);
+            margin-top: auto;
+            margin-bottom: 1rem;
+        }
+
+        .card-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            padding-top: 0.85rem;
+            border-top: 1px solid var(--line);
+        }
+
+        .btn-card {
+            padding: 0.55rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 150ms;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.35rem;
+        }
+
+        .btn-edit {
+            background: #F1F5F9;
+            color: var(--ink-700);
+        }
+
+        .btn-edit:hover {
+            background: #E2E8F0;
+            color: var(--navy-900);
+        }
+
+        .btn-toggle-stock {
+            background: #EFF6FF;
+            color: var(--navy-700);
+        }
+
+        .btn-toggle-stock:hover {
+            background: #DBEAFE;
+        }
+
+        .btn-delete {
+            grid-column: span 2;
+            background: transparent;
+            color: var(--danger);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            margin-top: 0.25rem;
+        }
+
+        .btn-delete:hover {
+            background: var(--danger-bg);
+            border-color: var(--danger);
+        }
+
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(6, 18, 38, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 500;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #fff;
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 580px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+            padding: 2rem;
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .modal-header h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--navy-900);
+        }
+
+        .modal-close {
+            background: transparent;
+            border: none;
+            font-size: 1.75rem;
+            cursor: pointer;
+            color: var(--ink-500);
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: var(--ink-900);
+        }
+
+        /* Image preview box in modal */
+        .img-preview-box {
+            width: 100%;
+            height: 180px;
+            border: 2px dashed var(--line);
+            border-radius: var(--radius-sm);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background: #F8FAFC;
+            transition: all 200ms;
+            position: relative;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .img-preview-box:hover {
+            border-color: var(--navy-700);
+            background: #F1F5F9;
+        }
+
+        .img-preview-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .img-preview-box span {
+            font-size: 0.82rem;
+            color: var(--ink-500);
+            font-weight: 500;
+        }
+
+        /* Toast Notifications */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--navy-950);
+            color: #fff;
+            padding: 0.9rem 1.5rem;
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-lg);
+            font-size: 0.9rem;
+            font-weight: 500;
+            z-index: 1000;
+            display: none;
+            animation: slideInToast 250ms ease;
+        }
+
+        .toast.show {
+            display: block;
+        }
+
+        .toast.success {
+            border-left: 4px solid var(--success);
+        }
+
+        .toast.error {
+            border-left: 4px solid var(--danger);
+        }
+
+        @keyframes slideInToast {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Loading skeleton */
+        .loading-state {
+            text-align: center;
+            padding: 4rem 1rem;
+            color: var(--ink-500);
+        }
+
+        .spinner {
+            width: 36px;
+            height: 36px;
+            border: 3px solid rgba(11, 37, 69, 0.15);
+            border-top-color: var(--navy-700);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .admin-nav-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .action-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .filters-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .btn-add {
+                justify-content: center;
+            }
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== TOPBAR ===== -->
+    <header class="admin-nav">
+        <div class="admin-nav-inner">
+            <a href="index.html" class="brand-cluster">
+                <img src="ig p.jpg" alt="IGHOROJE Logo">
+                <div class="brand-title">
+                    <h1>IGHOROJE ENTERPRISE</h1>
+                    <span>INVENTORY & STOCK PANEL</span>
+                </div>
+            </a>
+            <div class="nav-actions" id="navActions" style="display: none;">
+                <a href="index.html" target="_blank" class="view-site-link">
+                    View Live Website ↗
+                </a>
+                <button class="btn-logout" id="btnLogout">Sign Out</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== LOGIN VIEW ===== -->
+    <div class="auth-wrapper" id="authSection">
+        <div class="auth-card">
+            <img src="ig p.jpg" alt="IGHOROJE Logo">
+            <h2>Inventory Access</h2>
+            <p>Sign in to manage in-stock goods, brands, photos, and prices.</p>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginPassword">Manager Access Password</label>
+                    <input type="password" id="loginPassword" class="form-input" placeholder="Enter password..." required autofocus>
+                </div>
+                <button type="submit" class="btn-primary" id="btnLoginSubmit">
+                    Sign In to Dashboard
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== DASHBOARD VIEW (Shown when authenticated) ===== -->
+    <main class="container" id="dashboardSection" style="display: none;">
+
+        <!-- Stats Overview -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div>
+                    <div class="val" id="statTotal">--</div>
+                    <div class="lbl">Total Catalog Items</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div>
+                    <div class="val" id="statInStock" style="color: var(--success);">--</div>
+                    <div class="lbl">Currently In Stock</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div>
+                    <div class="val" id="statBrands">--</div>
+                    <div class="lbl">Active Brands</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action / Filter Bar -->
+        <div class="action-bar">
+            <div class="filters-group">
+                <input type="text" id="searchInput" class="form-input search-input" placeholder="Search by model or name...">
+                <select id="filterBrand" class="form-select" style="max-width: 170px;">
+                    <option value="All">All Brands</option>
+                </select>
+                <select id="filterStock" class="form-select" style="max-width: 160px;">
+                    <option value="All">All Stock</option>
+                    <option value="in_stock">In Stock Only</option>
+                    <option value="out_stock">Out of Stock</option>
+                </select>
+            </div>
+            <button class="btn-add" id="btnOpenAddModal">
+                + Add New Good
+            </button>
+        </div>
+
+        <!-- Products Grid Container -->
+        <div id="loadingIndicator" class="loading-state">
+            <div class="spinner"></div>
+            <p>Loading inventory from cloud database...</p>
+        </div>
+
+        <div class="products-grid" id="productsContainer">
+            <!-- Dynamically populated -->
+        </div>
+
+    </main>
+
+    <!-- ===== ADD / EDIT PRODUCT MODAL ===== -->
+    <div class="modal-overlay" id="productModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Add In-Stock Good</h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+
+            <form id="productForm">
+                <input type="hidden" id="editProductId">
+                <input type="hidden" id="existingImageUrl">
+
+                <!-- Brand Select -->
+                <div class="form-group">
+                    <label for="prodBrand">Brand *</label>
+                    <select id="prodBrand" class="form-select" required>
+                        <option value="">Select Brand...</option>
+                        <option value="Scanfrost">Scanfrost</option>
+                        <option value="Nexus">Nexus</option>
+                        <option value="LG">LG</option>
+                        <option value="Hisense">Hisense</option>
+                        <option value="Bruhm">Bruhm</option>
+                        <option value="MeWe">MeWe</option>
+                        <option value="TCL">TCL</option>
+                        <option value="Thermocool">Thermocool</option>
+                        <option value="__NEW__">+ Add Custom Brand</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="customBrandGroup" style="display: none;">
+                    <label for="customBrandInput">Enter New Brand Name *</label>
+                    <input type="text" id="customBrandInput" class="form-input" placeholder="e.g. Panasonic, Haier">
+                </div>
+
+                <!-- Product Name -->
+                <div class="form-group">
+                    <label for="prodName">Item Name / Model Number *</label>
+                    <input type="text" id="prodName" class="form-input" placeholder="e.g. 1.5HP Inverter Split AC" required>
+                </div>
+
+                <!-- Category -->
+                <div class="form-group">
+                    <label for="prodCategory">Category *</label>
+                    <select id="prodCategory" class="form-select" required>
+                        <option value="">Select Category...</option>
+                        <option value="Air Conditioners">Air Conditioners</option>
+                        <option value="Refrigerators & Freezers">Refrigerators & Freezers</option>
+                        <option value="Cookers">Cookers</option>
+                        <option value="Washing Machines">Washing Machines</option>
+                        <option value="Televisions">Televisions</option>
+                        <option value="Audio & Speakers">Audio & Speakers</option>
+                        <option value="Kitchen Appliances">Kitchen Appliances</option>
+                        <option value="Solar">Solar Panels & Inverters</option>
+                        <option value="CCTV">CCTV Cameras</option>
+                        <option value="Generators">Generators</option>
+                    </select>
+                </div>
+
+                <!-- Price -->
+                <div class="form-group">
+                    <label for="prodPrice">Price in Naira (₦) *</label>
+                    <input type="number" id="prodPrice" class="form-input" placeholder="e.g. 450000" min="0" step="500" required>
+                    <span style="font-size: 0.75rem; color: var(--ink-500); margin-top: 0.25rem; display: block;">
+                        Will automatically format as ₦450,000 on the website.
+                    </span>
+                </div>
+
+                <!-- Image Upload / Picker -->
+                <div class="form-group">
+                    <label>Product Photo * (Upload from phone camera or file)</label>
+                    <input type="file" id="imageFileInput" accept="image/*" style="display: none;">
+                    
+                    <div class="img-preview-box" id="imgPreviewTrigger">
+                        <img id="imgPreview" src="" style="display: none;">
+                        <span id="imgUploadPrompt">📷 Tap to choose photo from Camera / Gallery</span>
+                    </div>
+                </div>
+
+                <!-- Stock Toggle -->
+                <div class="form-group" style="display: flex; align-items: center; gap: 0.75rem; margin-top: 1rem;">
+                    <input type="checkbox" id="prodInStock" checked style="width: 18px; height: 18px; cursor: pointer;">
+                    <label for="prodInStock" style="margin-bottom: 0; cursor: pointer;">Available / In Stock</label>
+                </div>
+
+                <div style="margin-top: 1.75rem;">
+                    <button type="submit" class="btn-primary" id="btnSaveProduct">
+                        Save In-Stock Good
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script>
+        // Supabase Initialization
+        const SUPABASE_URL = "https://qigtiswdemzalhjjvkeg.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFpZ3Rpc3dkZW16YWxoamp2a2VnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMwMDc3NTEsImV4cCI6MjEwODU4Mzc1MX0.QCJ1121rnGqrov8EXuLJuRHD-1KaWrhT3l95EdoyNHo";
+        const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // State
+        let allProducts = [];
+        let currentEditingProduct = null;
+        let selectedFileToUpload = null;
+
+        // Elements
+        const authSection = document.getElementById('authSection');
+        const dashboardSection = document.getElementById('dashboardSection');
+        const navActions = document.getElementById('navActions');
+        const loginForm = document.getElementById('loginForm');
+        const btnLogout = document.getElementById('btnLogout');
+        const productsContainer = document.getElementById('productsContainer');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+
+        const productModal = document.getElementById('productModal');
+        const modalClose = document.getElementById('modalClose');
+        const btnOpenAddModal = document.getElementById('btnOpenAddModal');
+        const productForm = document.getElementById('productForm');
+        const modalTitle = document.getElementById('modalTitle');
+        const btnSaveProduct = document.getElementById('btnSaveProduct');
+
+        const prodBrand = document.getElementById('prodBrand');
+        const customBrandGroup = document.getElementById('customBrandGroup');
+        const customBrandInput = document.getElementById('customBrandInput');
+        const imageFileInput = document.getElementById('imageFileInput');
+        const imgPreviewTrigger = document.getElementById('imgPreviewTrigger');
+        const imgPreview = document.getElementById('imgPreview');
+        const imgUploadPrompt = document.getElementById('imgUploadPrompt');
+
+        const searchInput = document.getElementById('searchInput');
+        const filterBrand = document.getElementById('filterBrand');
+        const filterStock = document.getElementById('filterStock');
+
+        // Stats elements
+        const statTotal = document.getElementById('statTotal');
+        const statInStock = document.getElementById('statInStock');
+        const statBrands = document.getElementById('statBrands');
+
+        // Toast Helper
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast show ${type}`;
+            setTimeout(() => {
+                toast.className = 'toast';
+            }, 3500);
+        }
+
+        // Format Currency Helper
+        function formatNaira(num) {
+            return '₦' + Number(num || 0).toLocaleString('en-NG');
+        }
+
+        // Resolve Image URL
+        function getProductImageUrl(img) {
+            if (!img) return 'ig p.jpg';
+            if (img.startsWith('http://') || img.startsWith('https://')) return img;
+            return img; // Local file in directory
+        }
+
+        // ===== CHECK AUTH STATE ON LOAD =====
+        function checkAuth() {
+            const token = localStorage.getItem('ighoroje_admin_session');
+            if (token === 'authenticated') {
+                showDashboard();
+            } else {
+                showLogin();
+            }
+        }
+
+        function showDashboard() {
+            authSection.style.display = 'none';
+            dashboardSection.style.display = 'block';
+            navActions.style.display = 'flex';
+            loadProducts();
+        }
+
+        function showLogin() {
+            authSection.style.display = 'flex';
+            dashboardSection.style.display = 'none';
+            navActions.style.display = 'none';
+        }
+
+        // ===== AUTH HANDLERS =====
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const password = document.getElementById('loginPassword').value;
+            const btn = document.getElementById('btnLoginSubmit');
+
+            btn.disabled = true;
+            btn.textContent = 'Verifying access password...';
+
+            try {
+                const { data, error } = await sb.rpc('verify_admin_access', {
+                    input_password: password
+                });
+
+                btn.disabled = false;
+                btn.textContent = 'Sign In to Dashboard';
+
+                if (error) {
+                    showToast('Access verification error: ' + error.message, 'error');
+                    return;
+                }
+
+                if (data === true) {
+                    localStorage.setItem('ighoroje_admin_session', 'authenticated');
+                    showToast('Welcome back! Loaded inventory.');
+                    showDashboard();
+                } else {
+                    showToast('Incorrect access password. Please try again.', 'error');
+                }
+            } catch (err) {
+                btn.disabled = false;
+                btn.textContent = 'Sign In to Dashboard';
+                showToast(err.message, 'error');
+            }
+        });
+
+        btnLogout.addEventListener('click', () => {
+            localStorage.removeItem('ighoroje_admin_session');
+            showLogin();
+            showToast('Signed out successfully.');
+        });
+
+        // ===== LOAD PRODUCTS =====
+        async function loadProducts() {
+            loadingIndicator.style.display = 'block';
+            productsContainer.innerHTML = '';
+
+            const { data, error } = await sb
+                .from('products')
+                .select('*')
+                .order('created_at', { ascending: false });
+
+            loadingIndicator.style.display = 'none';
+
+            if (error) {
+                showToast('Failed to load products: ' + error.message, 'error');
+                return;
+            }
+
+            allProducts = data || [];
+            updateStats();
+            populateBrandFilter();
+            renderProducts();
+        }
+
+        function updateStats() {
+            statTotal.textContent = allProducts.length;
+            statInStock.textContent = allProducts.filter(p => p.in_stock).length;
+            const uniqueBrands = new Set(allProducts.map(p => p.brand).filter(Boolean));
+            statBrands.textContent = uniqueBrands.size;
+        }
+
+        function populateBrandFilter() {
+            const brands = Array.from(new Set(allProducts.map(p => p.brand).filter(Boolean))).sort();
+            const currentSelected = filterBrand.value;
+            filterBrand.innerHTML = '<option value="All">All Brands</option>';
+            brands.forEach(b => {
+                const opt = document.createElement('option');
+                opt.value = b;
+                opt.textContent = b;
+                filterBrand.appendChild(opt);
+            });
+            filterBrand.value = currentSelected;
+        }
+
+        // ===== RENDER PRODUCTS =====
+        function renderProducts() {
+            const search = searchInput.value.toLowerCase().trim();
+            const brandFilter = filterBrand.value;
+            const stockFilter = filterStock.value;
+
+            const filtered = allProducts.filter(p => {
+                const matchesSearch = !search ||
+                    p.name.toLowerCase().includes(search) ||
+                    (p.brand && p.brand.toLowerCase().includes(search)) ||
+                    (p.category && p.category.toLowerCase().includes(search));
+
+                const matchesBrand = brandFilter === 'All' || p.brand === brandFilter;
+
+                const matchesStock = stockFilter === 'All' ||
+                    (stockFilter === 'in_stock' && p.in_stock) ||
+                    (stockFilter === 'out_stock' && !p.in_stock);
+
+                return matchesSearch && matchesBrand && matchesStock;
+            });
+
+            if (filtered.length === 0) {
+                productsContainer.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 3rem 1rem; color: var(--ink-500);">
+                        <h3>No goods found matching your filters</h3>
+                        <p style="font-size: 0.88rem; margin-top: 0.5rem;">Try adjusting search terms or add a new good.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            productsContainer.innerHTML = filtered.map(p => {
+                const imgUrl = getProductImageUrl(p.image_url);
+                const isStock = p.in_stock;
+                const priceFormatted = p.price_display || formatNaira(p.price);
+
+                return `
+                    <div class="product-card" id="card-${p.id}">
+                        <div class="card-img-wrap">
+                            <img src="${imgUrl}" alt="${p.name}">
+                            <span class="card-brand-badge">${p.brand || 'General'}</span>
+                            <span class="stock-badge ${isStock ? 'in-stock' : 'out-stock'}">
+                                ${isStock ? '● In Stock' : '✕ Out of Stock'}
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-category">${p.category}</span>
+                            <h4 class="card-title">${p.name}</h4>
+                            <div class="card-price">${priceFormatted}</div>
+                            
+                            <div class="card-actions">
+                                <button class="btn-card btn-edit" onclick="openEditModal('${p.id}')">
+                                    ✏️ Edit
+                                </button>
+                                <button class="btn-card btn-toggle-stock" onclick="toggleStock('${p.id}')">
+                                    ${isStock ? 'Mark Out' : 'Mark In'}
+                                </button>
+                                <button class="btn-card btn-delete" onclick="deleteProduct('${p.id}', '${p.name.replace(/'/g, "\\'")}')">
+                                    🗑️ Remove from Catalog
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Search & Filter listeners
+        searchInput.addEventListener('input', renderProducts);
+        filterBrand.addEventListener('change', renderProducts);
+        filterStock.addEventListener('change', renderProducts);
+
+        // ===== MODAL LOGIC =====
+        function openAddModal() {
+            currentEditingProduct = null;
+            selectedFileToUpload = null;
+            productForm.reset();
+            document.getElementById('editProductId').value = '';
+            document.getElementById('existingImageUrl').value = '';
+            customBrandGroup.style.display = 'none';
+            imgPreview.style.display = 'none';
+            imgPreview.src = '';
+            imgUploadPrompt.style.display = 'block';
+            modalTitle.textContent = 'Add In-Stock Good';
+            btnSaveProduct.textContent = 'Save In-Stock Good';
+            productModal.classList.add('active');
+        }
+
+        window.openEditModal = function(id) {
+            const p = allProducts.find(item => item.id === id);
+            if (!p) return;
+
+            currentEditingProduct = p;
+            selectedFileToUpload = null;
+            modalTitle.textContent = 'Edit Good Details';
+            btnSaveProduct.textContent = 'Update Good';
+
+            document.getElementById('editProductId').value = p.id;
+            document.getElementById('prodName').value = p.name;
+            document.getElementById('prodPrice').value = p.price;
+            document.getElementById('prodCategory').value = p.category;
+            document.getElementById('prodInStock').checked = p.in_stock;
+            document.getElementById('existingImageUrl').value = p.image_url;
+
+            // Handle Brand selection
+            const brandExists = Array.from(prodBrand.options).some(opt => opt.value === p.brand);
+            if (brandExists) {
+                prodBrand.value = p.brand;
+                customBrandGroup.style.display = 'none';
+            } else {
+                prodBrand.value = '__NEW__';
+                customBrandGroup.style.display = 'block';
+                customBrandInput.value = p.brand;
+            }
+
+            // Image Preview
+            const imgUrl = getProductImageUrl(p.image_url);
+            imgPreview.src = imgUrl;
+            imgPreview.style.display = 'block';
+            imgUploadPrompt.style.display = 'none';
+
+            productModal.classList.add('active');
+        };
+
+        btnOpenAddModal.addEventListener('click', openAddModal);
+        modalClose.addEventListener('click', () => productModal.classList.remove('active'));
+        productModal.addEventListener('click', (e) => {
+            if (e.target === productModal) productModal.classList.remove('active');
+        });
+
+        // Brand dropdown change
+        prodBrand.addEventListener('change', () => {
+            if (prodBrand.value === '__NEW__') {
+                customBrandGroup.style.display = 'block';
+                customBrandInput.required = true;
+                customBrandInput.focus();
+            } else {
+                customBrandGroup.style.display = 'none';
+                customBrandInput.required = false;
+            }
+        });
+
+        // Image Picker Trigger
+        imgPreviewTrigger.addEventListener('click', () => imageFileInput.click());
+
+        imageFileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                selectedFileToUpload = file;
+                const reader = new FileReader();
+                reader.onload = (re) => {
+                    imgPreview.src = re.target.result;
+                    imgPreview.style.display = 'block';
+                    imgUploadPrompt.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // ===== SAVE / SUBMIT PRODUCT =====
+        productForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            btnSaveProduct.disabled = true;
+            btnSaveProduct.textContent = 'Saving to database...';
+
+            try {
+                const editId = document.getElementById('editProductId').value;
+                const name = document.getElementById('prodName').value.trim();
+                const category = document.getElementById('prodCategory').value;
+                const price = parseFloat(document.getElementById('prodPrice').value);
+                const in_stock = document.getElementById('prodInStock').checked;
+                let existingImg = document.getElementById('existingImageUrl').value;
+
+                // Determine Brand
+                let brand = prodBrand.value;
+                if (brand === '__NEW__') {
+                    brand = customBrandInput.value.trim();
+                }
+                if (!brand) throw new Error('Please select or specify a brand.');
+
+                // Determine Image URL
+                let finalImageUrl = existingImg;
+
+                if (selectedFileToUpload) {
+                    btnSaveProduct.textContent = 'Uploading picture to cloud...';
+                    const fileExt = selectedFileToUpload.name.split('.').pop() || 'jpg';
+                    const fileName = `${Date.now()}-${Math.random().toString(36).substring(2, 8)}.${fileExt}`;
+                    const filePath = `products/${fileName}`;
+
+                    const { error: uploadError } = await sb.storage
+                        .from('product-images')
+                        .upload(filePath, selectedFileToUpload, {
+                            cacheControl: '3600',
+                            upsert: true
+                        });
+
+                    if (uploadError) throw new Error('Image upload failed: ' + uploadError.message);
+
+                    const { data: { publicUrl } } = sb.storage
+                        .from('product-images')
+                        .getPublicUrl(filePath);
+
+                    finalImageUrl = publicUrl;
+                }
+
+                if (!finalImageUrl) {
+                    throw new Error('Please upload a product photo.');
+                }
+
+                const price_display = formatNaira(price);
+
+                const productPayload = {
+                    name,
+                    brand,
+                    category,
+                    price,
+                    price_display,
+                    image_url: finalImageUrl,
+                    in_stock,
+                    updated_at: new Date().toISOString()
+                };
+
+                if (editId) {
+                    // Update
+                    const { error } = await sb
+                        .from('products')
+                        .update(productPayload)
+                        .eq('id', editId);
+
+                    if (error) throw error;
+                    showToast('Good updated successfully!');
+                } else {
+                    // Insert
+                    const { error } = await sb
+                        .from('products')
+                        .insert([productPayload]);
+
+                    if (error) throw error;
+                    showToast('New good added to stock!');
+                }
+
+                productModal.classList.remove('active');
+                await loadProducts();
+
+            } catch (err) {
+                showToast(err.message, 'error');
+            } finally {
+                btnSaveProduct.disabled = false;
+                btnSaveProduct.textContent = editId ? 'Update Good' : 'Save In-Stock Good';
+            }
+        });
+
+        // ===== TOGGLE STOCK STATUS =====
+        window.toggleStock = async function(id) {
+            const p = allProducts.find(item => item.id === id);
+            if (!p) return;
+
+            const newStock = !p.in_stock;
+
+            // Optimistic UI update
+            p.in_stock = newStock;
+            renderProducts();
+            updateStats();
+
+            const { error } = await sb
+                .from('products')
+                .update({ in_stock: newStock, updated_at: new Date().toISOString() })
+                .eq('id', id);
+
+            if (error) {
+                showToast('Failed to update stock: ' + error.message, 'error');
+                await loadProducts(); // revert
+            } else {
+                showToast(`${p.name} marked as ${newStock ? 'In Stock' : 'Out of Stock'}.`);
+            }
+        };
+
+        // ===== DELETE PRODUCT =====
+        window.deleteProduct = async function(id, name) {
+            const confirmed = confirm(`Are you sure you want to remove "${name}" from the catalog?`);
+            if (!confirmed) return;
+
+            const { error } = await sb
+                .from('products')
+                .delete()
+                .eq('id', id);
+
+            if (error) {
+                showToast('Failed to delete item: ' + error.message, 'error');
+            } else {
+                showToast(`Removed "${name}" from catalog.`);
+                allProducts = allProducts.filter(p => p.id !== id);
+                renderProducts();
+                updateStats();
+            }
+        };
+
+        // Run auth check on init
+        checkAuth();
+    </script>
+</body>
+
+</html>
