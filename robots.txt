@@ -1,0 +1,7 @@
+# Robots.txt for ighoroje-international-enterprise.com
+User-agent: *
+Allow: /
+Disallow: /admin.html
+
+# Sitemap location
+Sitemap: https://ighoroje-international-enterprise.com/sitemap.xml
